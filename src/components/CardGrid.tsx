@@ -1,17 +1,16 @@
-import type { Movie } from "../types/movie";
 import { MovieCard } from "./MovieCard";
+import { MoviesContext } from "../features/movies/contexts/MoviesContext";
+import { useContext } from "react";
 
 
-type cardGridProps = {
-    movies : Movie[];
-}
+export const CardGrid = () => {
+    const { movies } = useContext(MoviesContext);
 
-export const CardGrid = ({ movies }: cardGridProps) =>{
     return (
         <div className="cards-grid">
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+             {movies.map((movie) => (
+                 <MovieCard key={movie.id} movie={movie} />
+                 ))}
         </div>
     )
 }
