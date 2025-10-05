@@ -1,4 +1,4 @@
-import "../styles/GenreDropwdown.css";
+import "../../styles/GenreDropwdown.css";
 import { GENRES, type GenreDropdownType } from "../../types/genre";
 
 interface GenreDropdownProps {

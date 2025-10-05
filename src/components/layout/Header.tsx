@@ -1,7 +1,7 @@
-import "../styles/Header.css";
+import "../../styles/Header.css";
 import { useLocation } from "react-router-dom";
 import Logo from "../shared/Logo";
-import { NavBar } from "../NavBar";
+import { NavBar } from "./NavBar";
 
 export const Header = () => {
   const location = useLocation();

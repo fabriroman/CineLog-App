@@ -1,5 +1,5 @@
 import type { GenreDropdownType } from "../../types/genre";
-import { GenreDropdown } from "./GenreDropdown";
+import { GenreDropdown } from "../shared/GenreDropdown";
 import { SearchBar } from "../shared/SearchBar";
 
 interface FilterProps {
