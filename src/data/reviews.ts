@@ -86,7 +86,7 @@ export const seedReviews: Review[] = [
     userId: 1,
     movieId: 6,
     rating: 4,
-    review_text: "Phoenix’s performance is haunting and transformative.",
+    review_text: "Phoenixs performance is haunting and transformative.",
     tag: "Movie Theater"
   },
   {
@@ -150,7 +150,7 @@ export const seedReviews: Review[] = [
     userId: 1,
     movieId: 3,
     rating: 5,
-    review_text: "Not just about music—it’s about obsession, sacrifice, and greatness.",
+    review_text: "Not just about music—its about obsession, sacrifice, and greatness.",
     tag: "Netflix"
   },
   {

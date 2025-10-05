@@ -1,7 +1,9 @@
 .movie-detail {
   display: flex;
   height: 50vh;
-  justify-content: center;
+  width: 100vw;
+  justify-content: flex-start;
+  padding-left: 5vw;
 }
 
 .movie-detail__img
@@ -13,7 +15,7 @@
 .movie-detail__info{
   background-color: rgb(235, 247, 247);
   padding: 1vw ;
-  width: 65%;
+  width: 60%;
 }
 .movie-detail__title{
   margin-right: 1vw;
