@@ -1,6 +1,6 @@
 import type { MovieDetailCardProps } from "../types/movie";
 import "../styles/MovieDetailCard.css";
-import { StarRating } from "../utils/StarRating";
+import { StarRating } from "./StarRating";
 
 export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
   return (
