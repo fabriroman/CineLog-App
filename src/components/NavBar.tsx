@@ -9,7 +9,11 @@ export const NavBar = () => {
   const { isAdmin, currentUser } = useContext(AuthContext);
 
   const handleNavigation = (path: string) => {
-    navigate(path);
+    if (path === "/profile" && !currentUser) {
+      navigate("/login");
+    } else {
+      navigate(path);
+    }
   };
 
   const baseNavItems = [
@@ -21,10 +25,6 @@ export const NavBar = () => {
   const navItems = isAdmin
     ? [{ id: "admin", label: "Admin", path: "/admin" }, ...baseNavItems]
     : baseNavItems;
-
-  if (!currentUser) {
-    return null;
-  }
 
   return (
     <nav className="nav" aria-label="Navegación principal">
