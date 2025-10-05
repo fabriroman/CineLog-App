@@ -1,12 +1,14 @@
 import "../styles/NavBar.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../features/auth/contexts/AuthContext";
+import { UserContext } from "../features/user/contexts/UserContext";
 
 export const NavBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAdmin, currentUser } = useContext(AuthContext);
+  const user = useContext(UserContext);
+  if (!user) throw new Error("UserContext must be used within UserProvider");
+  const { isAdmin, currentUser } = user;
 
   const handleNavigation = (path: string) => {
     if (path === "/profile" && !currentUser) {

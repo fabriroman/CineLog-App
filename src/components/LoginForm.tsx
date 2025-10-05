@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../features/auth/contexts/AuthContext";
+import { UserContext } from "../features/user/contexts/UserContext";
 import { useContext } from "react";
 import "../styles/LoginForm.css";
 
@@ -20,7 +20,9 @@ const EMAIL_VALIDATION = {
 };
 
 export const LoginForm = ({ onSuccess }: LoginFormProps) => {
-  const { login } = useContext(AuthContext);
+  const user = useContext(UserContext);
+  if (!user) throw new Error("UserContext must be used within UserProvider");
+  const { login } = user;
 
   const {
     register,

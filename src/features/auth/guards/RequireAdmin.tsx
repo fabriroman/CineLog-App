@@ -1,9 +1,11 @@
 import { type ReactNode, useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { UserContext } from "../../user/contexts/UserContext";
 import { Navigate, useLocation } from "react-router-dom";
 
 export function RequireAdmin({ children }: { children: ReactNode }) {
-  const { currentUser, isAdmin } = useContext(AuthContext);
+  const user = useContext(UserContext);
+  if (!user) throw new Error("UserContext must be used within UserProvider");
+  const { currentUser, isAdmin } = user;
   const location = useLocation();
 
   if (!currentUser || !isAdmin) {

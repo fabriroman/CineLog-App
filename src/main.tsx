@@ -5,6 +5,7 @@ import { MoviesProvider } from "./features/movies/contexts/MoviesProvider.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./features/auth/contexts/AuthProvider.tsx";
 import { WatchlistProvider } from "./features/movies/contexts/WatchlistProvider.tsx";
+import { UserProvider } from "./features/user/contexts/UserProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -12,7 +13,9 @@ createRoot(document.getElementById("root")!).render(
       <AuthProvider>
         <MoviesProvider>
           <WatchlistProvider>
-            <App />
+            <UserProvider>
+              <App />
+            </UserProvider>
           </WatchlistProvider>
         </MoviesProvider>
       </AuthProvider>

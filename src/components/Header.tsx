@@ -1,11 +1,15 @@
 import { useContext } from "react";
-import { AuthContext } from "../features/auth/contexts/AuthContext";
+import { UserContext } from "../features/user/contexts/UserContext";
 import "../styles/Header.css";
 import Logo from "./Logo";
 import { NavBar } from "./NavBar";
 
 export const Header = () => {
-  const { currentUser } = useContext(AuthContext);
+  const authCtx = useContext(UserContext);
+  if (!authCtx) throw new Error("UserContext must be used within UserProvider");
+  const { currentUser } = authCtx;
+  if (!currentUser) throw new Error("User not authenticated");
+
   return (
     <header className="header">
       <div className="header__container">

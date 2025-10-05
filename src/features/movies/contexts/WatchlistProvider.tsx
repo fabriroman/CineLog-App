@@ -7,13 +7,22 @@ import { WatchlistContext, type WatchlistItem } from "./WatchlistContext";
 
 const STORAGE_KEY = "watchlist";
 
-export const WatchlistProvider = ({ children }: { children: React.ReactNode }) => {
+export const WatchlistProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [watchlist, setWatchlist] = useLocalStorage<WatchlistItem[]>(
     STORAGE_KEY,
     []
   );
-  const { movies } = useContext(MoviesContext);
-  const { currentUser } = useContext(AuthContext);
+  const moviesCtx = useContext(MoviesContext);
+  if (!moviesCtx)
+    throw new Error("MoviesContext must be used within MoviesProvider");
+  const { movies } = moviesCtx;
+  const auth = useContext(AuthContext);
+  if (!auth) throw new Error("AuthContext must be used within AuthProvider");
+  const { currentUser } = auth;
   const navigate = useNavigate();
 
   const redirectToLogin = () => {
