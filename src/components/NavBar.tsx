@@ -10,7 +10,7 @@ export const NavBar = () => {
 
   const handleNavigation = (path: string) => {
     if (path === "/profile" && !currentUser) {
-      navigate("/login");
+      navigate("/login", { state: { from: { pathname: path } } });
     } else {
       navigate(path);
     }
