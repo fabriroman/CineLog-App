@@ -24,6 +24,9 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       return;
     }
     try {
+      if (value === null) {
+        return;
+      }
       localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
       console.error("Error setting localStorage:", error);
