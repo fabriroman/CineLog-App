@@ -2,6 +2,7 @@ import "../../../styles/HomePage.css";
 import { MovieCard } from "../../../components/MovieCard";
 import { useContext } from "react";
 import { MoviesContext } from "../contexts/MoviesContext";
+import "../../../styles/CardGrid.css";
 import { Filter } from "../../../components/Filter";
 import { useMovieFilters } from "../../../hooks/useMovieFilters";
 import { NoResultMessage } from "../../../components/NoResultMessage";
@@ -35,7 +36,7 @@ export const HomePage = () => {
       {isFiltering && moviesToDisplay.length === 0 ? (
         <NoResultMessage message="No movies found matching your criteria." />
       ) : (
-        <div className="home__grid">
+        <div className="cards-grid">
           {moviesToDisplay.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
