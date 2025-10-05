@@ -12,3 +12,22 @@
   align-items: center;
   gap: 2rem;
 }
+
+.header__logo-section {
+  flex: 0 0 auto;
+  min-width: 150px;
+}
+
+.header__user {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.header__user-message {
+  font-size: 0.8rem;
+  font-weight: 500;
+  max-width: 100%;
+}

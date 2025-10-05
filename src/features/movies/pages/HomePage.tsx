@@ -2,9 +2,10 @@ import "../../../styles/HomePage.css";
 import { MovieCard } from "../../../components/MovieCard";
 import { useContext } from "react";
 import { MoviesContext } from "../contexts/MoviesContext";
-import { Filter } from "../../../components/filters/Filter";
+import { Filter } from "../../../components/Filter";
 import { useMovieFilters } from "../../../hooks/useMovieFilters";
-import { NoResultMessage } from "../../../components/shared/NoResultMessage";
+import { NoResultMessage } from "../../../components/NoResultMessage";
+import { Header } from "../../../components/Header";
 
 export const HomePage = () => {
   const { movies } = useContext(MoviesContext);
@@ -22,6 +23,7 @@ export const HomePage = () => {
 
   return (
     <section className="home">
+      <Header />
       <h1 className="page-title">Movies</h1>
       <Filter
         selectedGenre={selectedGenre}

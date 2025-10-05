@@ -1,5 +1,5 @@
-import "../../styles/GenreDropwdown.css";
-import { GENRES, type GenreDropdownType } from "../../types/genre";
+import "../styles/GenreDropwdown.css";
+import { GENRES, type GenreDropdownType } from "../types/genre";
 
 interface GenreDropdownProps {
   selectedGenre: GenreDropdownType;
