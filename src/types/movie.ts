@@ -11,3 +11,4 @@ export type Movie = {
 export type MovieDetailCardProps = {
   movie: Movie;
 }
+

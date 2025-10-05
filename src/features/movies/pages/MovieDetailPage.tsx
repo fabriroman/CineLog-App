@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom"
 import { MoviesContext } from "../contexts/MoviesContext";
 import { MovieDetailCard } from "../../../components/MovieDetailCard";
+import { ReviewList } from "../../../components/ReviewList";
 
 export const MovieDetailPage = () => {
   const {id} = useParams();
@@ -13,7 +14,8 @@ export const MovieDetailPage = () => {
   return (
     <>
     <h1>MovieDetail</h1>
-    {movie ? <MovieDetailCard movie={movie}/> : "No hay"
+    {movie ? <><MovieDetailCard movie={movie}/>
+    <ReviewList movieId={movieId}/></>  : "No hay"
     }
     </>
   )

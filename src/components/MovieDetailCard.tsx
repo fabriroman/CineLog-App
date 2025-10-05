@@ -31,8 +31,8 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
           <p className="movie-detail__description">{movie.description}</p>
 
           <div className="movie-detail__buttons">
-            <button>Add watch list</button>
-            <button>Watched/Add review</button>
+            <button className="movie-detail__button">Add watch list</button>
+            <button className="movie-detail__button">Watched/Add review</button>
           </div>
         </div>
         
