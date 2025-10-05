@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import type { Movie } from "../types/movie";
 import "../styles/MovieCard.css";
 
-export const MovieCard = ({ id, title, year, posterUrl, genres }: Movie) => {
-  
+export const MovieCard = ({ movie }: { movie: Movie }) => {
+  const { id, title, year, posterUrl, genres } = movie;
   return (
     <article className="card">
       <div className="card__image-container">

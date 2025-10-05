@@ -10,7 +10,7 @@ export const HomePage = () => {
 
       <div className="home__grid">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} {...movie} />
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </section>

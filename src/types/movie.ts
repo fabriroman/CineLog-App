@@ -4,4 +4,10 @@ export type Movie = {
   year: number;
   posterUrl: string;
   genres: string[];
+  description: string;
+  rating: number
 };
+
+export type MovieDetailCardProps = {
+  movie: Movie;
+}
