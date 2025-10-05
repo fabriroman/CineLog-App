@@ -3,6 +3,8 @@ import { HomePage } from "./features/movies/pages/HomePage";
 import { Header } from "./components/layout/Header";
 import { AdminPage } from "./features/movies/pages/AdminPage";
 import { ProfilePage } from "./features/movies/pages/ProfilePage";
+import LoginPage from "./features/auth/pages/LoginPage";
+import { RequireGuest } from "./features/auth/guards/RequireGuest";
 
 function App() {
   return (
@@ -12,6 +14,14 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route
+          path="/login"
+          element={
+            <RequireGuest>
+              <LoginPage />
+            </RequireGuest>
+          }
+        />
       </Routes>
     </>
   );

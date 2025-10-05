@@ -1,0 +1,11 @@
+.login {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
