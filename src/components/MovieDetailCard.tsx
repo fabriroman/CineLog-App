@@ -1,10 +1,12 @@
 import type { MovieDetailCardProps } from "../types/movie";
 import "../styles/MovieDetailCard.css";
 import { StarRating } from "./StarRating";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ReviewsContext } from "../features/movies/contexts/ReviewsContext";
 import { getRating } from "../utils/rating";
 
 export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
+  const { reviews } = useContext(ReviewsContext);
   const [isAdd, setIsAdd] = useState(false);
   const [isWatched, setIsWatched] = useState(false);
 
@@ -14,6 +16,8 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
   const handleWatched = ()=>{
     setIsWatched(true);
   }
+
+  const rating =  getRating(reviews, movie.id);
  
   return (
     <>
@@ -29,7 +33,7 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
         <div className="movie-detail__info">
           <div className="movie-detail__header">
             <h1 className="movie-detail__title">{movie.title}</h1>
-            <StarRating value={getRating(movie.id)} readOnly />
+            <StarRating value={rating ?? 0} readOnly />
           </div>
 
           <p className="movie-detail__year">{movie.year}</p>

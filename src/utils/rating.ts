@@ -1,16 +1,9 @@
-import { useContext } from "react";
-import { ReviewsContext } from "../features/movies/contexts/ReviewsContext";
+import type { Review } from '../types/review';
 
-
-
-
-export function getRating(idMovie: number){
-    const {reviews} = useContext(ReviewsContext);
-    const ratingsMovie = reviews.filter((review)=>review.movieId === idMovie);
-
-    let sum = ratingsMovie.reduce((accumulator, object) => {
-        return accumulator + object.rating;
-    }, 0);
-    const avgRatings = sum/ratingsMovie.length;
-    return Math.round(avgRatings);
+export function getRating(reviews: Review[], movieId: number): number | null {
+  const movieReviews = reviews.filter(review => review.movieId === movieId);
+  if (movieReviews.length === 0) return null;
+  
+  const sum = movieReviews.reduce((acc, r) => acc + r.rating, 0);
+  return Math.round(sum / movieReviews.length);
 }
