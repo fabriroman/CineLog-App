@@ -15,6 +15,8 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
   });
 
   useEffect(() => {
+    console.log("key", key);
+    console.log("skipNextWrite", skipNextWrite.current);
     if (isFirst.current) {
       isFirst.current = false;
       return;
@@ -24,7 +26,8 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       return;
     }
     try {
-      if (value === null) {
+      // Don't save if value is null or an empty array
+      if (value === null || (Array.isArray(value) && value.length === 0)) {
         return;
       }
       localStorage.setItem(key, JSON.stringify(value));

@@ -10,7 +10,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
         <img className="card__img" src={posterUrl} alt={`${title} poster`} />
         <div className="card__overlay">
           <Link className="card__link" to={`/movie/${id}`}>
-              <span className="card__link-text">View details</span>
+            <span className="card__link-text">View details</span>
           </Link>
         </div>
       </div>

@@ -15,10 +15,6 @@ export type WatchlistContextType = {
   findMovieById: (movieId: number) => Movie | undefined;
 };
 
-export const WatchlistContext = createContext<WatchlistContextType>({
-  watchlist: [],
-  addToWatchlist: () => {},
-  removeFromWatchlist: () => {},
-  isInWatchlist: () => false,
-  findMovieById: () => undefined,
-});
+export const WatchlistContext = createContext<WatchlistContextType | null>(
+  null
+);
