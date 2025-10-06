@@ -9,7 +9,10 @@ import { NoResultMessage } from "../../../components/NoResultMessage";
 import { Header } from "../../../components/Header";
 
 export const HomePage = () => {
-  const { movies } = useContext(MoviesContext);
+  const moviesCtx = useContext(MoviesContext);
+  if (!moviesCtx)
+    throw new Error("MoviesContext must be used within MoviesProvider");
+  const { movies } = moviesCtx;
 
   const {
     selectedGenre,

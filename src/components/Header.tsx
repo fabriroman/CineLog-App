@@ -5,7 +5,10 @@ import Logo from "./Logo";
 import { NavBar } from "./NavBar";
 
 export const Header = () => {
-  const { currentUser } = useContext(AuthContext);
+  const authCtx = useContext(AuthContext);
+  if (!authCtx) throw new Error("AuthContext must be used within AuthProvider");
+  const { currentUser } = authCtx;
+
   return (
     <header className="header">
       <div className="header__container">
