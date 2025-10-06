@@ -43,7 +43,6 @@ export const ReviewCard = ({
       posterUrl={moviePoster}
       title={movieTitle}
       actions={actions}
-      width={280}
     />
   );
 };

@@ -23,11 +23,6 @@ export const WatchlistCard = ({ movie, onRemove }: WatchlistCardProps) => {
   );
 
   return (
-    <ProfileMovieCard
-      posterUrl={posterUrl}
-      title={title}
-      actions={actions}
-      width={200}
-    />
+    <ProfileMovieCard posterUrl={posterUrl} title={title} actions={actions} />
   );
 };

@@ -38,19 +38,3 @@
 .watchlist-card:hover .watchlist-card__overlay {
   opacity: 1;
 }
-
-.watchlist-card__button {
-  text-decoration: none;
-  color: white;
-  text-transform: uppercase;
-  backdrop-filter: blur(4px);
-  padding: 8px 16px;
-  border: 2px solid white;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.watchlist-card__button--remove {
-  background-color: rgba(229, 9, 20, 0.45);
-}

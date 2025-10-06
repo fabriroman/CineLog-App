@@ -5,6 +5,7 @@
   overflow: hidden;
   position: relative;
   flex: 0 0 auto;
+  width: 280px;
 }
 
 .movie-card__image-container {

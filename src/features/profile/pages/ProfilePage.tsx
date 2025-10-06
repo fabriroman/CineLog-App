@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "../styles/ProfilePage.css";
+import "../../../styles/ProfilePage.css";
 import { WatchlistCard } from "../../../components/WatchlistCard";
 import { ReviewCard } from "../../../components/ReviewCard";
 import { NoResultMessage } from "../../../components/NoResultMessage";
