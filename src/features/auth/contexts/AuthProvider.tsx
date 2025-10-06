@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       };
     }
     const role: Role = email === ADMIN_EMAIL ? "admin" : "user";
-    setCurrentUser({ id: email, email, role });
+    setCurrentUser({ id: email, email, role, username: user.username });
     return {
       ok: true,
     };
