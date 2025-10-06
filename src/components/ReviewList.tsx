@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { ReviewsContext } from "../features/movies/contexts/ReviewsContext";
 import { ReviewItem } from "./ReviewItem";
 import "../styles/ReviewList.css";
+import { AuthContext } from "../features/auth/contexts/AuthContext";
+import { getUserById } from "../data/users";
 
 type ReviewListProps = {
   movieId: number;
@@ -9,8 +11,19 @@ type ReviewListProps = {
 
 export const ReviewList = ({ movieId }: ReviewListProps) => {
   const { reviews } = useContext(ReviewsContext);
+  const auth = useContext(AuthContext);
+  if (!auth) throw new Error("AuthContext must be used within AuthProvider");
+  const { currentUser } = auth;
 
-  const movieReviews = reviews.filter(review => review.movieId === movieId);
+  console.log(currentUser)
+  let movieReviews = reviews.filter(review => review.movieId === movieId);
+  console.log(movieReviews)
+  // if (currentUser) {
+  //   movieReviews = movieReviews.sort((a, b) => {
+  //     if (a.userId === currentUser.id || b.userId === currentUser.id) {
+  //       return 1;
+  //     } else { return -1;}}
+  // }
 
   return (
     <div className="reviews-container">

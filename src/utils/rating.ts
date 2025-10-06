@@ -7,7 +7,7 @@ import { ReviewsContext } from "../features/movies/contexts/ReviewsContext";
 export function getRating(idMovie: number){
     const {reviews} = useContext(ReviewsContext);
     const ratingsMovie = reviews.filter((review)=>review.movieId === idMovie);
-    console.log(ratingsMovie);
+
     let sum = ratingsMovie.reduce((accumulator, object) => {
         return accumulator + object.rating;
     }, 0);
