@@ -12,6 +12,5 @@ export function getRating(idMovie: number){
         return accumulator + object.rating;
     }, 0);
     const avgRatings = sum/ratingsMovie.length;
-    console.log(avgRatings)
     return Math.round(avgRatings);
 }

@@ -2,7 +2,7 @@ import type { MovieDetailCardProps } from "../types/movie";
 import "../styles/MovieDetailCard.css";
 import { StarRating } from "./StarRating";
 import { useState } from "react";
-import { getRating } from "../utils/stars";
+import { getRating } from "../utils/rating";
 
 export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
   const [isAdd, setIsAdd] = useState(false);
