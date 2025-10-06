@@ -18,15 +18,15 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
 
   const [isWatched, setIsWatched] = useState(false);
 
-  const handleAdd = ()=>{
+  const handleAdd = () => {
     addToWatchlist(movie.id);
-  }
-  const handleWatched = ()=>{
+  };
+  const handleWatched = () => {
     setIsWatched(true);
-  }
+  };
 
-  const rating =  getRating(reviews, movie.id);
- 
+  const rating = getRating(reviews, movie.id);
+
   return (
     <>
       <article className="movie-detail">
@@ -55,12 +55,18 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
           <p className="movie-detail__description">{movie.description}</p>
 
           <div className="movie-detail__buttons">
-            <button className="movie-detail__button" onClick={handleAdd}>{!isInWatchlist(movie.id) ? "Add watch list" : "Added"}</button>
-            <button className="movie-detail__button" onClick={handleWatched}>{!isWatched ? "Watched/Add review" : "Watched"}</button>
+            {!isInWatchlist(movie.id) && (
+              <button className="movie-detail__button" onClick={handleAdd}>
+                Agregar a lista
+              </button>
+            )}
+            {!isWatched && (
+              <button className="movie-detail__button" onClick={handleWatched}>
+                Watched/Add review
+              </button>
+            )}
           </div>
         </div>
-        
-        
       </article>
     </>
   );
