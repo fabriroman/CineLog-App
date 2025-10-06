@@ -4,14 +4,22 @@ import { StarRating } from "./StarRating";
 import { useContext, useState } from "react";
 import { ReviewsContext } from "../features/movies/contexts/ReviewsContext";
 import { getRating } from "../utils/rating";
+import { WatchlistContext } from "../features/movies/contexts/WatchlistContext";
 
 export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
   const { reviews } = useContext(ReviewsContext);
-  const [isAdd, setIsAdd] = useState(false);
+  const watchlistCtx = useContext(WatchlistContext);
+
+  if (!watchlistCtx) {
+    throw new Error("MovieDetailCard must be used within WatchlistProvider");
+  }
+
+  const { addToWatchlist, isInWatchlist } = watchlistCtx;
+
   const [isWatched, setIsWatched] = useState(false);
 
   const handleAdd = ()=>{
-    setIsAdd(true);
+    addToWatchlist(movie.id);
   }
   const handleWatched = ()=>{
     setIsWatched(true);
@@ -47,7 +55,7 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
           <p className="movie-detail__description">{movie.description}</p>
 
           <div className="movie-detail__buttons">
-            <button className="movie-detail__button" onClick={handleAdd}>{!isAdd ? "Add watch list" : "Added"}</button>
+            <button className="movie-detail__button" onClick={handleAdd}>{!isInWatchlist(movie.id) ? "Add watch list" : "Added"}</button>
             <button className="movie-detail__button" onClick={handleWatched}>{!isWatched ? "Watched/Add review" : "Watched"}</button>
           </div>
         </div>
