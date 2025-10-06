@@ -3,6 +3,6 @@ export type Review = {
   movieId: number;
   rating: number; 
   review_text: string;
-  userId: number;
+  userId: string;
   tag: "Netflix" | "Prime" | "Movie Theater";
 };

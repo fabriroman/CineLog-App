@@ -3,7 +3,7 @@ import type { Review } from "../types/review";
 export const seedReviews: Review[] = [
   {
     id: 1,
-    userId: 1,
+    userId: "user@cinelog.com",
     movieId: 1,
     rating: 5,
     review_text: "Mind-blowing concept and flawless execution. Nolan at his best!",
@@ -11,7 +11,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 2,
-    userId: 2,
+    userId: "user@cinelog.com",
     movieId: 1,
     rating: 4,
     review_text: "Intricate plot that rewards multiple viewings. The dream layers are genius.",
@@ -19,7 +19,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 3,
-    userId: 1,
+    userId: "user@cinelog.com",
     movieId: 2,
     rating: 5,
     review_text: "Visually stunning and emotionally powerful. The score alone gives me chills.",
@@ -27,7 +27,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 4,
-    userId: 3,
+    userId: "user2@cinelog.com",
     movieId: 2,
     rating: 3,
     review_text: "Beautiful but a bit too long. Some scientific parts felt forced.",
@@ -35,7 +35,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 5,
-    userId: 2,
+    userId: "user@cinelog.com",
     movieId: 3,
     rating: 5,
     review_text: "Intense, gripping, and unforgettable. Fletcher is terrifyingly brilliant.",
@@ -43,7 +43,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 6,
-    userId: 4,
+    userId: "user3@cinelog.com",
     movieId: 3,
     rating: 4,
     review_text: "The drumming scenes are electrifying. A masterclass in tension.",
@@ -51,7 +51,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 7,
-    userId: 1,
+    userId: "user2@cinelog.com",
     movieId: 4,
     rating: 5,
     review_text: "A perfect blend of dark humor, suspense, and social commentary.",
@@ -59,7 +59,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 8,
-    userId: 3,
+    userId: "user2@cinelog.com",
     movieId: 4,
     rating: 3,
     review_text: "Clever twist but the second half felt uneven to me.",
@@ -67,7 +67,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 9,
-    userId: 2,
+    userId: "user@cinelog.com",
     movieId: 5,
     rating: 5,
     review_text: "Non-stop adrenaline from start to finish. Practical effects are insane!",
@@ -75,7 +75,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 10,
-    userId: 4,
+    userId: "user3@cinelog.com",
     movieId: 5,
     rating: 4,
     review_text: "Chaotic in the best way possible. Furiosa steals the show.",
@@ -83,15 +83,15 @@ export const seedReviews: Review[] = [
   },
   {
     id: 11,
-    userId: 1,
+    userId: "user3@cinelog.com",
     movieId: 6,
     rating: 4,
-    review_text: "Phoenixs performance is haunting and transformative.",
+    review_text: "Phoenix’s performance is haunting and transformative.",
     tag: "Movie Theater"
   },
   {
     id: 12,
-    userId: 3,
+    userId: "user2@cinelog.com",
     movieId: 6,
     rating: 3,
     review_text: "Dark and atmospheric, but left me feeling empty by the end.",
@@ -99,7 +99,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 13,
-    userId: 2,
+    userId: "user@cinelog.com",
     movieId: 7,
     rating: 5,
     review_text: "Twists you never see coming. Rosamund Pike is chillingly perfect.",
@@ -107,7 +107,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 14,
-    userId: 4,
+    userId: "user3@cinelog.com",
     movieId: 7,
     rating: 4,
     review_text: "A psychological rollercoaster with razor-sharp writing.",
@@ -115,7 +115,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 15,
-    userId: 1,
+    userId: "user@cinelog.com",
     movieId: 8,
     rating: 5,
     review_text: "Revolutionary animation style and a heartwarming story. Pure joy!",
@@ -123,7 +123,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 16,
-    userId: 2,
+    userId: "user@cinelog.com",
     movieId: 8,
     rating: 4,
     review_text: "Fresh, funny, and full of heart. Miles Morales is the Spider-Man we needed.",
@@ -131,7 +131,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 17,
-    userId: 3,
+    userId: "user2@cinelog.com",
     movieId: 2,
     rating: 4,
     review_text: "The father-daughter relationship wrecked me. Space never felt so emotional.",
@@ -139,7 +139,7 @@ export const seedReviews: Review[] = [
   },
   {
     id: 18,
-    userId: 4,
+    userId: "user3@cinelog.com",
     movieId: 1,
     rating: 5,
     review_text: "Still the gold standard for intelligent blockbusters. That hallway fight!",
@@ -147,15 +147,15 @@ export const seedReviews: Review[] = [
   },
   {
     id: 19,
-    userId: 1,
+    userId: "user2@cinelog.com",
     movieId: 3,
     rating: 5,
-    review_text: "Not just about music—its about obsession, sacrifice, and greatness.",
+    review_text: "Not just about music—it’s about obsession, sacrifice, and greatness.",
     tag: "Netflix"
   },
   {
     id: 20,
-    userId: 2,
+    userId: "user@cinelog.com",
     movieId: 4,
     rating: 4,
     review_text: "Brilliant satire with razor-sharp direction. The basement scene haunts me.",
