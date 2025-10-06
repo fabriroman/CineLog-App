@@ -3,6 +3,7 @@ import { HomePage } from "./features/movies/pages/HomePage";
 import LoginPage from "./features/auth/pages/LoginPage";
 import { RequireGuest } from "./features/auth/guards/RequireGuest";
 import { MovieDetailPage } from "./features/movies/pages/MovieDetailPage";
+import { Admin } from "./features/admin/pages/Admin";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             </RequireGuest>
           }
         />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </>
   );
