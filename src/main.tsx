@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-import { MoviesProvider } from "./features/movies/contexts/MoviesProvider.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./features/auth/contexts/AuthProvider.tsx";
-import { WatchlistProvider } from "./features/movies/contexts/WatchlistProvider.tsx";
+import { ReviewProvider } from "./features/movies/contexts/ReviewsProvider.tsx";
+import { MoviesProvider } from "./features/movies/contexts/MoviesProvider.tsx";
 import { UserProvider } from "./features/user/contexts/UserProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
@@ -12,11 +12,11 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <AuthProvider>
         <MoviesProvider>
-          <WatchlistProvider>
+          <ReviewProvider>
             <UserProvider>
               <App />
             </UserProvider>
-          </WatchlistProvider>
+          </ReviewProvider>
         </MoviesProvider>
       </AuthProvider>
     </BrowserRouter>
