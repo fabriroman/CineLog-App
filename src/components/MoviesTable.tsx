@@ -16,6 +16,7 @@ export const MoviesTable = () => {
           <th>Año</th>
           <th>Género</th>
           <th>Rating</th>
+           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,7 @@ export const MoviesTable = () => {
             <td>
               <StarRating value={movie.rating} readOnly />
             </td>
+            <td><button>edit</button><button>erase</button></td>
           </tr>
         ))}
       </tbody>

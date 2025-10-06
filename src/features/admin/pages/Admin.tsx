@@ -1,5 +1,5 @@
-import React from 'react'
 import { MoviesTable } from '../../../components/MoviesTable'
+import { ReviewsTable } from '../../../components/ReviewsTable'
 
 export const Admin = () => {
   
@@ -9,6 +9,7 @@ export const Admin = () => {
     <button>MOVIES</button>
     <button>REVIEWS?</button>
     <MoviesTable/>
+    <ReviewsTable/>
 
     </>
     
