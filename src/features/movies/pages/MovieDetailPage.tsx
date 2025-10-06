@@ -8,7 +8,10 @@ export const MovieDetailPage = () => {
   const { id } = useParams();
   const movieId = id ? parseInt(id, 10) : NaN;
 
-  const { movies } = useContext(MoviesContext);
+  const moviesCtx = useContext(MoviesContext);
+  if (!moviesCtx)
+    throw new Error("MoviesContext must be used within MoviesProvider");
+  const { movies } = moviesCtx;
   const movie = movies.find((movie) => movie.id === movieId);
 
   return (
