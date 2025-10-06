@@ -12,10 +12,9 @@ export const WatchlistProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [watchlist, setWatchlist] = useLocalStorage<WatchlistItem[]>(
-    STORAGE_KEY,
-    []
-  );
+  const [watchlist, setWatchlist, clearWatchlist] = useLocalStorage<
+    WatchlistItem[]
+  >(STORAGE_KEY, []);
   const moviesCtx = useContext(MoviesContext);
   if (!moviesCtx)
     throw new Error("MoviesContext must be used within MoviesProvider");
@@ -67,18 +66,22 @@ export const WatchlistProvider = ({
     }
 
     const userId = currentUser.id;
-    setWatchlist(
-      watchlist
-        .map((item) =>
-          item.userId === userId
-            ? {
-                ...item,
-                movieIds: item.movieIds.filter((id) => id !== movieId),
-              }
-            : item
-        )
-        .filter((item) => item.movieIds.length > 0) // Remove empty watchlists
-    );
+    const newWatchlist = watchlist
+      .map((item) =>
+        item.userId === userId
+          ? {
+              ...item,
+              movieIds: item.movieIds.filter((id) => id !== movieId),
+            }
+          : item
+      )
+      .filter((item) => item.movieIds.length > 0); // Remove empty watchlists
+
+    if (newWatchlist.length === 0) {
+      clearWatchlist();
+    } else {
+      setWatchlist(newWatchlist);
+    }
   };
 
   const isInWatchlist = (movieId: number) => {
