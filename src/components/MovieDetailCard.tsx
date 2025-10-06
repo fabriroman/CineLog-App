@@ -57,7 +57,7 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
           <div className="movie-detail__buttons">
             {!isInWatchlist(movie.id) && (
               <button className="movie-detail__button" onClick={handleAdd}>
-                Agregar a lista
+                Add watch list
               </button>
             )}
             {!isWatched && (
