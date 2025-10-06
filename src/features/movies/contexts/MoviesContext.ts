@@ -6,7 +6,4 @@ export type MoviesContextType = {
   setMovies: (movies: Movie[]) => void;
 };
 
-export const MoviesContext = createContext<MoviesContextType>({
-  movies: [],
-  setMovies: () => {},
-});
+export const MoviesContext = createContext<MoviesContextType | null>(null);

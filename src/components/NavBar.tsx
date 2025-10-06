@@ -6,7 +6,9 @@ import { AuthContext } from "../features/auth/contexts/AuthContext";
 export const NavBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAdmin, currentUser } = useContext(AuthContext);
+  const auth = useContext(AuthContext);
+  if (!auth) throw new Error("AuthContext must be used within AuthProvider");
+  const { isAdmin, currentUser } = auth;
 
   const handleNavigation = (path: string) => {
     if (path === "/profile" && !currentUser) {

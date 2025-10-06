@@ -20,7 +20,9 @@ const EMAIL_VALIDATION = {
 };
 
 export const LoginForm = ({ onSuccess }: LoginFormProps) => {
-  const { login } = useContext(AuthContext);
+  const auth = useContext(AuthContext);
+  if (!auth) throw new Error("AuthContext must be used within AuthProvider");
+  const { login } = auth;
 
   const {
     register,
