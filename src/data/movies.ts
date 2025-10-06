@@ -36,7 +36,7 @@ export const seedMovies: Movie[] = [
     genres: ["Drama", "Thriller"],
     posterUrl: "https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
     description: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
-    rating:3,
+    rating:1,
   },
   {
     id: 5,

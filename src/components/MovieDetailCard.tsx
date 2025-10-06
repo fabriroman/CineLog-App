@@ -1,8 +1,20 @@
 import type { MovieDetailCardProps } from "../types/movie";
 import "../styles/MovieDetailCard.css";
 import { StarRating } from "./StarRating";
+import { useState } from "react";
+import { getRating } from "../utils/stars";
 
 export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
+  const [isAdd, setIsAdd] = useState(false);
+  const [isWatched, setIsWatched] = useState(false);
+
+  const handleAdd = ()=>{
+    setIsAdd(true);
+  }
+  const handleWatched = ()=>{
+    setIsWatched(true);
+  }
+ 
   return (
     <>
       <article className="movie-detail">
@@ -17,7 +29,7 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
         <div className="movie-detail__info">
           <div className="movie-detail__header">
             <h1 className="movie-detail__title">{movie.title}</h1>
-            <StarRating value={movie.rating} readOnly />
+            <StarRating value={getRating(movie.id)} readOnly />
           </div>
 
           <p className="movie-detail__year">{movie.year}</p>
@@ -31,8 +43,8 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
           <p className="movie-detail__description">{movie.description}</p>
 
           <div className="movie-detail__buttons">
-            <button className="movie-detail__button">Add watch list</button>
-            <button className="movie-detail__button">Watched/Add review</button>
+            <button className="movie-detail__button" onClick={handleAdd}>{!isAdd ? "Add watch list" : "Added"}</button>
+            <button className="movie-detail__button" onClick={handleWatched}>{!isWatched ? "Watched/Add review" : "Watched"}</button>
           </div>
         </div>
         
