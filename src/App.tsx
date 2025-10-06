@@ -3,7 +3,7 @@ import { HomePage } from "./features/movies/pages/HomePage";
 import LoginPage from "./features/auth/pages/LoginPage";
 import { RequireGuest } from "./features/auth/guards/RequireGuest";
 import { MovieDetailPage } from "./features/movies/pages/MovieDetailPage";
-import { ProfilePage } from "./components/ProfilePage";
+import { ProfilePage } from "./features/profile/pages/ProfilePage";
 
 function App() {
   return (

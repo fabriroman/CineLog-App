@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { Movie } from "../types/movie";
-import "../styles/WatchlistCard.css";
+import { ProfileMovieCard } from "./ProfileMovieCard";
+import { CardActions, CardButton } from "./ProfileCardActions";
 
 interface WatchlistCardProps {
   movie: Movie;
@@ -10,30 +11,23 @@ interface WatchlistCardProps {
 export const WatchlistCard = ({ movie, onRemove }: WatchlistCardProps) => {
   const { id, posterUrl, title } = movie;
 
-  return (
-    <article className="watchlist-card">
-      <div className="watchlist-card__image-container">
-        <img
-          className="watchlist-card__img"
-          src={posterUrl}
-          alt={`${title} poster`}
-        />
-        <div className="watchlist-card__overlay">
-          <Link
-            className="watchlist-card__button watchlist-card__button--view"
-            to={`/movie/${id}`}
-          >
-            <span className="watchlist-card__button-text">View details</span>
-          </Link>
+  const actions = (
+    <CardActions>
+      <Link to={`/movie/${id}`} style={{ textDecoration: "none" }}>
+        <CardButton variant="info">View details</CardButton>
+      </Link>
+      <CardButton variant="danger" onClick={() => onRemove(id)}>
+        Remove
+      </CardButton>
+    </CardActions>
+  );
 
-          <button
-            className="watchlist-card__button watchlist-card__button--remove"
-            onClick={() => onRemove(id)}
-          >
-            <span className="watchlist-card__button-text">Remove</span>
-          </button>
-        </div>
-      </div>
-    </article>
+  return (
+    <ProfileMovieCard
+      posterUrl={posterUrl}
+      title={title}
+      actions={actions}
+      width={200}
+    />
   );
 };
