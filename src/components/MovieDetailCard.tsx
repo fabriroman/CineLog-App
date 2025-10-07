@@ -1,6 +1,7 @@
 import type { MovieDetailCardProps } from "../types/movie";
 import "../styles/MovieDetailCard.css";
 import { StarRating } from "./StarRating";
+import { AddReviewButton } from "./AddReviewButton";
 
 export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
   return (
@@ -32,7 +33,7 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
 
           <div className="movie-detail__buttons">
             <button className="movie-detail__button">Add watch list</button>
-            <button className="movie-detail__button">Watched/Add review</button>
+            <AddReviewButton movieId={movie.id} />
           </div>
         </div>
         
