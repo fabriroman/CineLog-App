@@ -1,37 +1,53 @@
-import { useContext } from "react";
 import { StarRating } from "./StarRating";
-import { ReviewsContext } from "../features/movies/contexts/ReviewsContext";
-import { MoviesContext } from "../features/movies/contexts/MoviesContext";
 
-export const ReviewsTable = () => {
-  const { reviews } = useContext(ReviewsContext);
-  const moviesCtx = useContext(MoviesContext);
-  if (!moviesCtx)
-    throw new Error("MoviesContext must be used within MoviesProvider");
-  const { movies } = moviesCtx;
+export interface Review {
+  id: number;
+  movieId: number;
+  userId: string | number;
+  rating: number;
+}
 
-  const movie = (movieId: number) => {
-    return movies.find((movie) => movie.id === movieId);
+export interface Movie {
+  id: number;
+  title: string;
+}
+
+interface ReviewsTableProps {
+  reviews: Review[];
+  movies: Movie[];
+}
+
+export const ReviewsTable = ({
+  reviews,
+  movies,
+}: ReviewsTableProps) => {
+  const getMovieTitle = (movieId: number): string | null => {
+    const movie = movies.find((m) => m.id === movieId);
+    return movie ? movie.title : null;
   };
 
   return (
     <table className="data-table">
       <thead>
         <tr>
-          <th>Movie</th>
-          <th>User</th>
-          <th>Rating</th>
+          <th>Película</th>
+          <th>Usuario</th>
+          <th>Calificación</th>
         </tr>
       </thead>
       <tbody>
         {reviews.map((review) => {
-          const movieFound = movie(review.movieId);
-          if (!movieFound) return null;
+          const title = getMovieTitle(review.movieId);
+          if (!title) return null;
 
           return (
             <tr key={review.id}>
-              <td>{movieFound.title}</td>
-              <td>{review.userId}</td>
+              <td>{title}</td>
+              <td>
+                <span>
+                  {review.userId}
+                </span>
+              </td>
               <td>
                 <StarRating value={review.rating} readOnly />
               </td>

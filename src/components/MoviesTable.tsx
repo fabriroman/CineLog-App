@@ -1,13 +1,20 @@
-import { useContext } from "react";
 import { StarRating } from "./StarRating";
-import { MoviesContext } from "../features/movies/contexts/MoviesContext";
 
-export const MoviesTable = () => {
-  const moviesCtx = useContext(MoviesContext);
-  if (!moviesCtx)
-    throw new Error("MoviesContext must be used within MoviesProvider");
-  const { movies } = moviesCtx;
+export interface Movie {
+  id: number;
+  title: string;
+  year: number;
+  genres: string[];
+  rating: number;
+}
 
+interface MoviesTableProps {
+  movies: Movie[];
+  onEdit?: (movie: Movie) => void;
+  onDelete?: (movie: Movie) => void;
+}
+
+export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
   return (
     <table className="data-table">
       <thead>
@@ -16,7 +23,7 @@ export const MoviesTable = () => {
           <th>Año</th>
           <th>Género</th>
           <th>Rating</th>
-           <th>Actions</th>
+          {onEdit || onDelete ? <th>Acciones</th> : null}
         </tr>
       </thead>
       <tbody>
@@ -28,7 +35,21 @@ export const MoviesTable = () => {
             <td>
               <StarRating value={movie.rating} readOnly />
             </td>
-            <td><button>edit</button><button>erase</button></td>
+            {(onEdit || onDelete) && (
+              <td>
+                {onEdit && (
+                  <button
+                    onClick={() => onEdit(movie)}
+                    style={{ marginRight: "8px" }}
+                  >
+                    Editar
+                  </button>
+                )}
+                {onDelete && (
+                  <button onClick={() => onDelete(movie)}>Eliminar</button>
+                )}
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
