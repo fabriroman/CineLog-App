@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "../../../styles/ProfilePage.css";
 import { WatchlistCard } from "../../../components/WatchlistCard";
 import { ReviewCard } from "../../../components/ReviewCard";
@@ -8,10 +8,13 @@ import { Carousel } from "../../../components/Carousel";
 import { UserContext } from "../../user/contexts/UserContext";
 import { ReviewsContext } from "../../movies/contexts/ReviewsContext";
 import { getFavoriteGenre, getUserAverageRating } from "../../../utils/rating";
+import type { Review } from "../../../types/review";
+import { ReviewModal } from "../../../components/ReviewModal";
 
 export const ProfilePage = () => {
   const userCtx = useContext(UserContext);
   const reviewsCtx = useContext(ReviewsContext);
+  const [editingReview, setEditingReview] = useState<Review | null>(null);
 
   if (!userCtx) throw new Error("UserContext must be used within UserProvider");
   if (!reviewsCtx)
@@ -31,6 +34,21 @@ export const ProfilePage = () => {
   const handleRemoveReview = (id: number) => {
     const updatedReviews = reviews.filter((review) => review.id !== id);
     setReviews(updatedReviews);
+  };
+
+  const handleEditReview = (updatedData: {
+    rating: number;
+    review_text: string;
+    tag: Review["tag"];
+  }) => {
+    if (!editingReview) return;
+
+    const updatedReviews = reviews.map((review) =>
+      review.id === editingReview.id ? { ...review, ...updatedData } : review
+    );
+
+    setReviews(updatedReviews);
+    setEditingReview(null);
   };
 
   return (
@@ -65,6 +83,7 @@ export const ProfilePage = () => {
               movieTitle={movie.title}
               moviePoster={movie.posterUrl}
               onRemove={handleRemoveReview}
+              onEdit={setEditingReview}
             />
           ))}
         </Carousel>
@@ -90,6 +109,14 @@ export const ProfilePage = () => {
           </div>
         </div>
       </div>
+
+      {editingReview && (
+        <ReviewModal
+          initialReview={editingReview}
+          onClose={() => setEditingReview(null)}
+          onSubmit={handleEditReview}
+        />
+      )}
     </section>
   );
 };

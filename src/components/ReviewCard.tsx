@@ -9,6 +9,7 @@ interface ReviewCardProps {
   movieTitle?: string;
   moviePoster?: string;
   onRemove: (id: number) => void;
+  onEdit?: (review: Review) => void;
 }
 
 export const ReviewCard = ({
@@ -16,6 +17,7 @@ export const ReviewCard = ({
   movieTitle = "Movie Title",
   moviePoster = "",
   onRemove,
+  onEdit,
 }: ReviewCardProps) => {
   const { id, rating, review_text, tag } = review;
 
@@ -29,7 +31,7 @@ export const ReviewCard = ({
         <p className="review-card__tag">{tag}</p>
         <p className="review-card__text">{review_text}</p>
       </div>
-      <CardButton variant="primary" disabled>
+      <CardButton variant="primary" onClick={() => onEdit?.(review)}>
         Edit
       </CardButton>
       <CardButton variant="danger" onClick={() => onRemove(id)}>
