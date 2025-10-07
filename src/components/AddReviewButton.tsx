@@ -3,6 +3,7 @@ import { ReviewsContext } from "../features/movies/contexts/ReviewsContext";
 import { AuthContext } from "../features/auth/contexts/AuthContext";
 import { ReviewModal } from "./ReviewModal";
 import type { Review } from "../types/review";
+import { useNavigate, useLocation } from "react-router-dom";
 
 type AddReviewButtonProps = {
   movieId: number;
@@ -10,46 +11,56 @@ type AddReviewButtonProps = {
 
 export const AddReviewButton = ({ movieId }: AddReviewButtonProps) => {
   const [showModal, setShowModal] = useState(false);
-  const { currentUser } = useContext(AuthContext)!;
+  const auth = useContext(AuthContext);
+  if (!auth)
+    throw new Error("AddReviewButton must be used within AuthProvider");
+  const { currentUser } = auth;
   const { reviews, setReviews } = useContext(ReviewsContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // ✅ 1. Detectar si el usuario ya tiene review en esta película
   const userAlreadyReviewed = useMemo(() => {
- if (!currentUser) return false;
-  return reviews.some(
-    (r) => r.movieId === movieId && r.userId === currentUser.id
-  );
-}, [reviews, movieId, currentUser]);
+    if (!currentUser) return false;
+    return reviews.some(
+      (r) => r.movieId === movieId && r.userId === currentUser.id
+    );
+  }, [reviews, movieId, currentUser]);
 
-  // ✅ 2. Función para agregar review (insertar al inicio)
-  const handleAddReview = (data: { rating: number; review_text: string; tag: Review["tag"] }) => {
+  const handleClick = () => {
     if (!currentUser) {
-      alert("Please log in to add a review.");
+      navigate("/login", { state: { from: { pathname: location.pathname } } });
       return;
     }
+    setShowModal(true);
+  };
+
+  const handleAddReview = (data: {
+    rating: number;
+    review_text: string;
+    tag: Review["tag"];
+  }) => {
+    if (!currentUser) return;
 
     const newReview: Review = {
       id: Date.now(),
-      userId: currentUser.email,
+      userId: currentUser.id,
       movieId,
       rating: data.rating,
       review_text: data.review_text,
       tag: data.tag,
     };
 
-    // Agregar al inicio del array → nuevo review arriba
     setReviews([newReview, ...reviews]);
     setShowModal(false);
   };
 
-  // ✅ 3. Si ya tiene review, ocultar botón
   if (userAlreadyReviewed) {
-     return <p className="movie-detail__note">You’ve already reviewed this movie.</p>;
+    return null;
   }
 
   return (
     <>
-      <button className="movie-detail__button" onClick={() => setShowModal(true)}>
+      <button className="movie-detail__button" onClick={handleClick}>
         Watched / Add Review
       </button>
 

@@ -1,7 +1,7 @@
 import type { MovieDetailCardProps } from "../types/movie";
 import "../styles/MovieDetailCard.css";
 import { StarRating } from "./StarRating";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ReviewsContext } from "../features/movies/contexts/ReviewsContext";
 import { getRating } from "../utils/rating";
 import { WatchlistContext } from "../features/movies/contexts/WatchlistContext";
@@ -17,13 +17,8 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
 
   const { addToWatchlist, isInWatchlist } = watchlistCtx;
 
-  const [isWatched, setIsWatched] = useState(false);
-
   const handleAdd = () => {
     addToWatchlist(movie.id);
-  };
-  const handleWatched = () => {
-    setIsWatched(true);
   };
 
   const rating = getRating(reviews, movie.id);
@@ -61,9 +56,7 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
                 Add watch list
               </button>
             )}
-            {!isWatched && (
-              <AddReviewButton movieId={movie.id}/>
-            )}
+            <AddReviewButton movieId={movie.id} />
           </div>
         </div>
       </article>
