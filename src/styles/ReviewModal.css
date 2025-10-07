@@ -1,0 +1,87 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.modal {
+  background: #1c1c1c;
+  color: #f2f2f2;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal__title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal__label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.modal__textarea {
+  resize: none;
+  height: 100px;
+  border-radius: 6px;
+  padding: 0.5rem;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.modal__select {
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.modal__buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.modal__button {
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal__button--cancel {
+  background: #555;
+}
+
+.modal__button--save {
+  background: #ffb400;
+  color: #000;
+}
+
+.modal__button--save:hover {
+  background: #ffc933;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
