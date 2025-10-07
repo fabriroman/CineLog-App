@@ -15,8 +15,6 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
   });
 
   useEffect(() => {
-    console.log("key", key);
-    console.log("skipNextWrite", skipNextWrite.current);
     if (isFirst.current) {
       isFirst.current = false;
       return;

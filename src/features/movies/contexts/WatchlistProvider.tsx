@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { AuthContext } from "../../auth/contexts/AuthContext";
 import { MoviesContext } from "./MoviesContext";
@@ -23,9 +23,10 @@ export const WatchlistProvider = ({
   if (!auth) throw new Error("AuthContext must be used within AuthProvider");
   const { currentUser } = auth;
   const navigate = useNavigate();
+  const location = useLocation();
 
   const redirectToLogin = () => {
-    navigate("/login");
+    navigate("/login", { state: { from: { pathname: location.pathname } } });
   };
 
   const addToWatchlist = (movieId: number) => {
