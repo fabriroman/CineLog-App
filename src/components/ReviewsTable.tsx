@@ -17,38 +17,35 @@ interface ReviewsTableProps {
   movies: Movie[];
 }
 
-export const ReviewsTable = ({
-  reviews,
-  movies,
-}: ReviewsTableProps) => {
+export const ReviewsTable = ({ reviews, movies }: ReviewsTableProps) => {
   const getMovieTitle = (movieId: number): string | null => {
     const movie = movies.find((m) => m.id === movieId);
     return movie ? movie.title : null;
   };
 
   return (
-    <table className="data-table">
-      <thead>
-        <tr>
-          <th>Película</th>
-          <th>Usuario</th>
-          <th>Calificación</th>
+    <table className="reviews-table">
+      <thead className="reviews-table__header">
+        <tr className="reviews-table__header-row">
+          <th className="reviews-table__header-cell">Película</th>
+          <th className="reviews-table__header-cell">Usuario</th>
+          <th className="reviews-table__header-cell">Calificación</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="reviews-table__body">
         {reviews.map((review) => {
           const title = getMovieTitle(review.movieId);
           if (!title) return null;
 
           return (
-            <tr key={review.id}>
-              <td>{title}</td>
-              <td>
-                <span>
-                  {review.userId}
-                </span>
+            <tr key={review.id} className="reviews-table__row">
+              <td className="reviews-table__cell reviews-table__cell--movie">
+                {title}
               </td>
-              <td>
+              <td className="reviews-table__cell reviews-table__cell--user">
+                <span className="reviews-table__user-id">{review.userId}</span>
+              </td>
+              <td className="reviews-table__cell reviews-table__cell--rating">
                 <StarRating value={review.rating} readOnly />
               </td>
             </tr>

@@ -5,7 +5,6 @@ import { MoviesTable } from "../../../components/MoviesTable";
 import { ReviewsTable } from "../../../components/ReviewsTable";
 
 export const Admin = () => {
-  const [isMoviesShown, setIsMovieShown] = useState(false);
   const [isReviewsShown, setIsReviewsShown] = useState(false);
   const moviesCtx = useContext(MoviesContext);
   const { reviews } = useContext(ReviewsContext);
@@ -16,27 +15,40 @@ export const Admin = () => {
 
   const { movies } = moviesCtx;
 
-  const handleMovies = () => {
-    setIsMovieShown(!isMoviesShown);
-  };
-  const handleReviews = () => {
-    setIsReviewsShown(!isReviewsShown);
+  const handleReviews = (isMovies: boolean) => {
+    setIsReviewsShown(!isMovies);
   };
 
   return (
-    <>
-      <h1>Cine Log Admin Panel</h1>
-      <div>
-        <button onClick={handleMovies}>MOVIES</button>
-        <button onClick={handleReviews}>REVIEWS</button>
+    <div className="admin">
+      <h1 className="admin__title">Cine Log Admin Panel</h1>
+
+      <div className="admin__controls">
+        <button
+          className="admin__button admin__button--movies"
+          onClick={()=>{handleReviews(true)}}
+        >
+          MOVIES
+        </button>
+        <button
+          className="admin__button admin__button--reviews"
+          onClick={()=>{handleReviews(false)}}
+        >
+          REVIEWS
+        </button>
       </div>
 
-      <h2>Movies</h2>
-      {isMoviesShown? <MoviesTable movies={movies} /> : "There are no movies"}
 
-      <h2>Reviews</h2>
-       {isReviewsShown? <ReviewsTable reviews={reviews} movies={movies} /> : "There are no reviews"}
-      
-    </>
+      <section className="admin__section">
+        <h2 className="admin__section-title">{isReviewsShown ? "Reviews" : "Movies"}</h2>
+        <div className="admin__content">
+          {isReviewsShown ? (
+            <ReviewsTable reviews={reviews} movies={movies} />
+          ) : (
+            <MoviesTable movies={movies}/>
+          )}
+        </div>
+      </section>
+    </div>
   );
 };
