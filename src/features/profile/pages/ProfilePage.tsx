@@ -17,17 +17,10 @@ export const ProfilePage = () => {
   if (!reviewsCtx)
     throw new Error("ReviewsContext must be used within ReviewProvider");
 
-  const {
-    moviesInWatchlist,
-    removeFromWatchlist,
-    moviesWithReviews,
-    currentUser,
-  } = userCtx;
+  const { moviesInWatchlist, removeFromWatchlist, moviesWithReviews } = userCtx;
   const { setReviews, reviews } = reviewsCtx;
 
-  const userReviews = reviews.filter(
-    (review) => review.userId === userCtx.currentUser?.id
-  );
+  const userReviews = userCtx.moviesWithReviews.map(({ review }) => review);
   const averageRating = getUserAverageRating(userReviews);
   const favoriteGenre = getFavoriteGenre(userCtx.moviesInWatchlist);
 
@@ -90,10 +83,10 @@ export const ProfilePage = () => {
             <span className="profile__stats-value">
               {userReviews.length > 0 ? averageRating.toFixed(1) : "N/A"}
             </span>
-            <div className="profile__stats-item">
-              <span className="profile__stats-label"> Favorite Genre:</span>
-              <span className="profile__stats-value">{favoriteGenre}</span>
-            </div>
+          </div>
+          <div className="profile__stats-item">
+            <span className="profile__stats-label"> Favorite Genre:</span>
+            <span className="profile__stats-value">{favoriteGenre}</span>
           </div>
         </div>
       </div>
