@@ -7,6 +7,7 @@ import { NavBar } from "../../../components/NavBar";
 import { Carousel } from "../../../components/Carousel";
 import { UserContext } from "../../user/contexts/UserContext";
 import { ReviewsContext } from "../../movies/contexts/ReviewsContext";
+import { getFavoriteGenre, getUserAverageRating } from "../../../utils/rating";
 
 export const ProfilePage = () => {
   const userCtx = useContext(UserContext);
@@ -16,8 +17,19 @@ export const ProfilePage = () => {
   if (!reviewsCtx)
     throw new Error("ReviewsContext must be used within ReviewProvider");
 
-  const { moviesInWatchlist, removeFromWatchlist, moviesWithReviews } = userCtx;
+  const {
+    moviesInWatchlist,
+    removeFromWatchlist,
+    moviesWithReviews,
+    currentUser,
+  } = userCtx;
   const { setReviews, reviews } = reviewsCtx;
+
+  const userReviews = reviews.filter(
+    (review) => review.userId === userCtx.currentUser?.id
+  );
+  const averageRating = getUserAverageRating(userReviews);
+  const favoriteGenre = getFavoriteGenre(userCtx.moviesInWatchlist);
 
   const handleRemoveFromWatchlist = (id: number) => {
     removeFromWatchlist(id);
@@ -69,6 +81,22 @@ export const ProfilePage = () => {
           <NoResultMessage message="No reviews yet" />
         </div>
       )}
+
+      <div className="profile__stats">
+        <h2 className="profile__stats-title">My Stats</h2>
+        <div className="profile__stats-list">
+          <div className="profile__stats-item">
+            <span className="profile__stats-label"> Average rating:</span>
+            <span className="profile__stats-value">
+              {userReviews.length > 0 ? averageRating.toFixed(1) : "N/A"}
+            </span>
+            <div className="profile__stats-item">
+              <span className="profile__stats-label"> Favorite Genre:</span>
+              <span className="profile__stats-value">{favoriteGenre}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

@@ -19,3 +19,11 @@
 .profile__empty {
   text-align: center;
 }
+
+.profile__stats {
+  margin-top: 2rem;
+}
+
+.profile__stats-item {
+  font-size: 1.2rem;
+}
