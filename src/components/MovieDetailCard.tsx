@@ -62,9 +62,7 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
               </button>
             )}
             {!isWatched && (
-              <button className="movie-detail__button" onClick={handleWatched}>
-                Watched/Add review
-              </button>
+              <AddReviewButton movieId={movie.id}/>
             )}
           </div>
         </div>
