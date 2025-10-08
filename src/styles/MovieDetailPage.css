@@ -1,0 +1,10 @@
+.movie-detail-page {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+.movie-detail-page__navbar {
+  display: flex;
+  justify-content: flex-end;
+}

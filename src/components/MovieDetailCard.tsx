@@ -1,10 +1,11 @@
 import type { MovieDetailCardProps } from "../types/movie";
 import "../styles/MovieDetailCard.css";
 import { StarRating } from "./StarRating";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ReviewsContext } from "../features/movies/contexts/ReviewsContext";
 import { getRating } from "../utils/rating";
 import { WatchlistContext } from "../features/movies/contexts/WatchlistContext";
+import { AddReviewButton } from "./AddReviewButton";
 
 export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
   const { reviews } = useContext(ReviewsContext);
@@ -16,13 +17,8 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
 
   const { addToWatchlist, isInWatchlist } = watchlistCtx;
 
-  const [isWatched, setIsWatched] = useState(false);
-
   const handleAdd = () => {
     addToWatchlist(movie.id);
-  };
-  const handleWatched = () => {
-    setIsWatched(true);
   };
 
   const rating = getRating(reviews, movie.id);
@@ -46,9 +42,16 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
 
           <p className="movie-detail__year">{movie.year}</p>
           <div className="movie-detail__genres">
-            {movie.genres.map((genre, index) => (
-              <span key={index} className="movie-detail__genre">
-                {genre}{" "}
+            {movie.genres.map((genre) => (
+              <span key={genre} className="movie-detail__genre">
+                {genre}
+              </span>
+            ))}
+          </div>
+          <div className="movie-detail__actors">
+            {movie.actors.map((actor) => (
+              <span key={actor} className="movie-detail__actor">
+                {actor}
               </span>
             ))}
           </div>
@@ -60,11 +63,7 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
                 Add watch list
               </button>
             )}
-            {!isWatched && (
-              <button className="movie-detail__button" onClick={handleWatched}>
-                Watched/Add review
-              </button>
-            )}
+            <AddReviewButton movieId={movie.id} />
           </div>
         </div>
       </article>
