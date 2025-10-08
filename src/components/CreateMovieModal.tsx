@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { MoviesContext } from "../features/movies/contexts/MoviesContext";
 import { GENRES } from "../types/genre";
@@ -25,6 +25,7 @@ export const CreateMovieModal = ({
       title: "",
       year: new Date().getFullYear(),
       genres: [],
+      actors: [],
       description: "",
       posterUrl: "",
       rating: 0,
@@ -34,10 +35,26 @@ export const CreateMovieModal = ({
   if (!moviesCtx) {
     throw new Error("MoviesContext must be used within MoviesProvider");
   }
+  const [actorsInput, setActorsInput] = useState("");
 
   const onSubmit = (data: CreateMovieData) => {
     try {
-      moviesCtx.createMovie(data);
+      const actors = actorsInput
+        .split(",")
+        .map((a: string) => a.trim())
+        .filter(Boolean);
+
+      if (actors.length === 0) {
+        alert("Please enter at least one actor.");
+        return;
+      }
+
+      const movieData: CreateMovieData = {
+      ...data,
+      actors, 
+    };
+
+      moviesCtx.createMovie(movieData);
       onClose();
       reset();
     } catch (error) {
@@ -130,6 +147,19 @@ export const CreateMovieModal = ({
             {errors.genres && (
               <span className="create-movie-form-error">
                 {errors.genres.message}
+              </span>
+            )}
+          </div>
+          <div className="create-movie-modal__field">
+            <label>Actors (separate with commas)</label>
+            <input
+              value={actorsInput}
+              onChange={(e) => setActorsInput(e.target.value)}
+              placeholder="e.g. Tom Hanks, Natalie Portman"
+            />
+            {actorsInput.trim() === "" && (
+              <span className="create-movie-form-error">
+                At least one actor is required
               </span>
             )}
           </div>
