@@ -8,7 +8,7 @@ export const NavBar = () => {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
   if (!auth) throw new Error("AuthContext must be used within AuthProvider");
-  const { isAdmin, currentUser } = auth;
+  const { isAdmin, currentUser, logout } = auth;
 
   const handleNavigation = (path: string) => {
     if (path === "/profile" && !currentUser) {
@@ -42,6 +42,11 @@ export const NavBar = () => {
             {item.label}
           </button>
         ))}
+        {currentUser && (
+          <button className="nav__button nav__button--logout" onClick={logout}>
+            Logout
+          </button>
+        )}
       </div>
     </nav>
   );
