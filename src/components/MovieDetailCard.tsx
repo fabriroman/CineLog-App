@@ -42,9 +42,16 @@ export const MovieDetailCard = ({ movie }: MovieDetailCardProps) => {
 
           <p className="movie-detail__year">{movie.year}</p>
           <div className="movie-detail__genres">
-            {movie.genres.map((genre, index) => (
-              <span key={index} className="movie-detail__genre">
-                {genre}{" "}
+            {movie.genres.map((genre) => (
+              <span key={genre} className="movie-detail__genre">
+                {genre}
+              </span>
+            ))}
+          </div>
+          <div className="movie-detail__actors">
+            {movie.actors.map((actor) => (
+              <span key={actor} className="movie-detail__actor">
+                {actor}
               </span>
             ))}
           </div>

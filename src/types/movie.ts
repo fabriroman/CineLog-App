@@ -8,7 +8,11 @@ export type Movie = {
   description: string;
   rating: number
   genres: Genre[];
+  actors: string[];
 };
+
+
+
 
 export type MovieDetailCardProps = {
   movie: Movie;
