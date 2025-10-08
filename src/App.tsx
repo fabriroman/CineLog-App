@@ -3,6 +3,7 @@ import { HomePage } from "./features/movies/pages/HomePage";
 import LoginPage from "./features/auth/pages/LoginPage";
 import { RequireGuest } from "./features/auth/guards/RequireGuest";
 import { MovieDetailPage } from "./features/movies/pages/MovieDetailPage";
+import { ProfilePage } from "./features/profile/pages/ProfilePage";
 import { Admin } from "./features/admin/pages/Admin";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movie/:id" element={<MovieDetailPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route
           path="/login"
           element={

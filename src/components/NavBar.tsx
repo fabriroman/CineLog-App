@@ -29,7 +29,7 @@ export const NavBar = () => {
     : baseNavItems;
 
   return (
-    <nav className="nav" aria-label="Navegación principal">
+    <nav className="nav">
       <div className="nav__list">
         {navItems.map((item) => (
           <button

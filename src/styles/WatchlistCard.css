@@ -1,0 +1,40 @@
+.watchlist-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  overflow: hidden;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.watchlist-card__image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 150%;
+}
+
+.watchlist-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.watchlist-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: opacity 0.2s;
+}
+
+.watchlist-card:hover .watchlist-card__overlay {
+  opacity: 1;
+}

@@ -1,17 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StarRating } from "./StarRating";
 import type { Review } from "../types/review";
 import "../styles/ReviewModal.css";
 
 type ReviewModalProps = {
   onClose: () => void;
-  onSubmit: (data: { rating: number; review_text: string; tag: Review["tag"] }) => void;
+  onSubmit: (data: {
+    rating: number;
+    review_text: string;
+    tag: Review["tag"];
+  }) => void;
+  initialReview?: Review;
 };
 
-export const ReviewModal = ({ onClose, onSubmit }: ReviewModalProps) => {
-  const [rating, setRating] = useState(0);
-  const [reviewText, setReviewText] = useState("");
-  const [tag, setTag] = useState<Review["tag"]>("Netflix");
+export const ReviewModal = ({
+  onClose,
+  onSubmit,
+  initialReview,
+}: ReviewModalProps) => {
+  const [rating, setRating] = useState(initialReview?.rating ?? 0);
+  const [reviewText, setReviewText] = useState(
+    initialReview?.review_text ?? ""
+  );
+  const [tag, setTag] = useState<Review["tag"]>(
+    initialReview?.tag ?? "Netflix"
+  );
+
+  useEffect(() => {
+    if (initialReview) {
+      setRating(initialReview.rating);
+      setReviewText(initialReview.review_text);
+      setTag(initialReview.tag);
+    }
+  }, [initialReview]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +46,9 @@ export const ReviewModal = ({ onClose, onSubmit }: ReviewModalProps) => {
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <h2 className="modal__title">Add Your Review</h2>
+        <h2 className="modal__title">
+          {initialReview ? "Edit Your Review" : "Add Your Review"}
+        </h2>
 
         <form onSubmit={handleSubmit} className="modal__form">
           <label className="modal__label">Your Rating:</label>
@@ -36,7 +59,11 @@ export const ReviewModal = ({ onClose, onSubmit }: ReviewModalProps) => {
             className="modal__textarea"
             value={reviewText}
             onChange={(e) => setReviewText(e.target.value)}
-            placeholder="Write your thoughts..."
+            placeholder={
+              initialReview
+                ? "Update your thoughts ..."
+                : "Write your thoughts..."
+            }
           />
 
           <label className="modal__label">Where did you watch it?</label>
@@ -51,11 +78,15 @@ export const ReviewModal = ({ onClose, onSubmit }: ReviewModalProps) => {
           </select>
 
           <div className="modal__buttons">
-            <button type="button" onClick={onClose} className="modal__button modal__button--cancel">
+            <button
+              type="button"
+              onClick={onClose}
+              className="modal__button modal__button--cancel"
+            >
               Cancel
             </button>
             <button type="submit" className="modal__button modal__button--save">
-              Save Review
+              {initialReview ? "Save Changes" : "Save Review"}
             </button>
           </div>
         </form>
