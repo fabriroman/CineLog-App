@@ -1,6 +1,6 @@
 import "../styles/NavBar.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../features/auth/contexts/AuthContext";
 
 export const NavBar = () => {
@@ -8,13 +8,36 @@ export const NavBar = () => {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
   if (!auth) throw new Error("AuthContext must be used within AuthProvider");
-  const { isAdmin, currentUser } = auth;
+  const { isAdmin, currentUser, logout } = auth;
 
   const handleNavigation = (path: string) => {
     if (path === "/profile" && !currentUser) {
       navigate("/login", { state: { from: { pathname: path } } });
     } else {
       navigate(path);
+    }
+  };
+
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const PROTECTED_ROUTES = ["/profile", "/admin"];
+
+  const handleLogout = () => {
+    try {
+      if (window.confirm("Are you sure you want to logout?")) {
+        setIsLoggingOut(true);
+        logout();
+
+        const currentPath = location.pathname;
+        if (PROTECTED_ROUTES.includes(currentPath)) {
+          navigate("/");
+        }
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      alert("Error during logout. Please try again.");
+    } finally {
+      setIsLoggingOut(false);
     }
   };
 
@@ -42,6 +65,15 @@ export const NavBar = () => {
             {item.label}
           </button>
         ))}
+        {currentUser && (
+          <button
+            className="nav__button nav__button--logout"
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+          >
+            {isLoggingOut ? "Logging out..." : "Logout"}
+          </button>
+        )}
       </div>
     </nav>
   );
