@@ -12,7 +12,7 @@ export const seedReviews: Review[] = [
   {
     id: 2,
     userId: "user@cinelog.com",
-    movieId: 1,
+    movieId: 8,
     rating: 4,
     review_text: "Intricate plot that rewards multiple viewings. The dream layers are genius.",
     tag: "Netflix"
@@ -60,7 +60,7 @@ export const seedReviews: Review[] = [
   {
     id: 8,
     userId: "user2@cinelog.com",
-    movieId: 4,
+    movieId: 8,
     rating: 3,
     review_text: "Clever twist but the second half felt uneven to me.",
     tag: "Netflix"
@@ -68,7 +68,7 @@ export const seedReviews: Review[] = [
   {
     id: 9,
     userId: "user@cinelog.com",
-    movieId: 5,
+    movieId: 6,
     rating: 5,
     review_text: "Non-stop adrenaline from start to finish. Practical effects are insane!",
     tag: "Movie Theater"
@@ -100,7 +100,7 @@ export const seedReviews: Review[] = [
   {
     id: 13,
     userId: "user@cinelog.com",
-    movieId: 7,
+    movieId: 5,
     rating: 5,
     review_text: "Twists you never see coming. Rosamund Pike is chillingly perfect.",
     tag: "Prime"
@@ -116,15 +116,15 @@ export const seedReviews: Review[] = [
   {
     id: 15,
     userId: "user@cinelog.com",
-    movieId: 8,
+    movieId: 7,
     rating: 5,
     review_text: "Revolutionary animation style and a heartwarming story. Pure joy!",
     tag: "Movie Theater"
   },
   {
     id: 16,
-    userId: "user@cinelog.com",
-    movieId: 8,
+    userId: "user2@cinelog.com",
+    movieId: 1,
     rating: 4,
     review_text: "Fresh, funny, and full of heart. Miles Morales is the Spider-Man we needed.",
     tag: "Netflix"
@@ -132,7 +132,7 @@ export const seedReviews: Review[] = [
   {
     id: 17,
     userId: "user2@cinelog.com",
-    movieId: 2,
+    movieId: 5,
     rating: 4,
     review_text: "The father-daughter relationship wrecked me. Space never felt so emotional.",
     tag: "Prime"
