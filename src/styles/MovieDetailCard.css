@@ -56,6 +56,20 @@
   margin-right: 0.5rem;
 }
 
+.movie-detail__actors {
+  margin: 0.5rem 0;
+}
+.movie-detail__actor {
+  background: #f5f7f8;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  color: #4a5568;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  display: inline-block;
+}
+
 .movie-detail__description {
   color: #4a5568;
   line-height: 1.5;
