@@ -22,7 +22,7 @@ export const NavBar = () => {
 
   const PROTECTED_ROUTES = ["/profile", "/admin"];
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     try {
       if (window.confirm("Are you sure you want to logout?")) {
         setIsLoggingOut(true);
