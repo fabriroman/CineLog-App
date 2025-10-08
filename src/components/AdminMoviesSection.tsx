@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { MoviesContext } from "../features/movies/contexts/MoviesContext";
 import { MoviesTable } from "./MoviesTable";
+import "../styles/AdminMoviesSection.css";
 
 export const AdminMoviesSection = () => {
   const moviesCtx = useContext(MoviesContext);
@@ -15,7 +16,9 @@ export const AdminMoviesSection = () => {
     <section className="admin__section">
       <div className="admin__section-header">
         <h2 className="admin__section-title">Movies</h2>
-        <button className="button button--primary">Add New Movie</button>
+        <div className="admin__section-add">
+          <button className="button button--primary">Add New Movie</button>
+        </div>
       </div>
       <div className="admin__content">
         <MoviesTable movies={movies} />

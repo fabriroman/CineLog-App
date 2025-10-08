@@ -4,7 +4,7 @@ import LoginPage from "./features/auth/pages/LoginPage";
 import { RequireGuest } from "./features/auth/guards/RequireGuest";
 import { MovieDetailPage } from "./features/movies/pages/MovieDetailPage";
 import { ProfilePage } from "./features/profile/pages/ProfilePage";
-import { Admin } from "./features/admin/pages/Admin";
+import { AdminPage } from "./features/admin/pages/AdminPage";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             </RequireGuest>
           }
         />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </>
   );
