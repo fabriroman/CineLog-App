@@ -1,6 +1,6 @@
 import "../styles/NavBar.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../features/auth/contexts/AuthContext";
 
 export const NavBar = () => {
@@ -15,6 +15,29 @@ export const NavBar = () => {
       navigate("/login", { state: { from: { pathname: path } } });
     } else {
       navigate(path);
+    }
+  };
+
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const PROTECTED_ROUTES = ["/profile", "/admin"];
+
+  const handleLogout = async () => {
+    try {
+      if (window.confirm("Are you sure you want to logout?")) {
+        setIsLoggingOut(true);
+        logout();
+
+        const currentPath = location.pathname;
+        if (PROTECTED_ROUTES.includes(currentPath)) {
+          navigate("/");
+        }
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      alert("Error during logout. Please try again.");
+    } finally {
+      setIsLoggingOut(false);
     }
   };
 
@@ -43,8 +66,12 @@ export const NavBar = () => {
           </button>
         ))}
         {currentUser && (
-          <button className="nav__button nav__button--logout" onClick={logout}>
-            Logout
+          <button
+            className="nav__button nav__button--logout"
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+          >
+            {isLoggingOut ? "Logging out..." : "Logout"}
           </button>
         )}
       </div>
