@@ -1,0 +1,120 @@
+.create-movie-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.create-movie-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.create-movie-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.create-movie-modal__title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.create-movie-modal__close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+}
+
+.create-movie-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.create-movie-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.create-movie-modal__label {
+  font-weight: 500;
+  color: #333;
+}
+
+.create-movie-modal__input,
+.create-movie-modal__textarea,
+.create-movie-modal__select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.create-movie-modal__textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.create-movie-modal__select--multiple {
+  min-height: 100px;
+}
+
+.create-movie-form-error {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.create-movie-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.create-movie-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.create-movie-button--primary {
+  background: #3498db;
+  color: white;
+}
+
+.create-movie-button--primary:hover {
+  background: #2980b9;
+}
+
+.create-movie-button--secondary {
+  background: #95a5a6;
+  color: white;
+}
+
+.create-movie-button--secondary:hover {
+  background: #7f8c8d;
+}
