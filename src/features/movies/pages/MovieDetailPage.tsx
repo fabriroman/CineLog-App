@@ -1,8 +1,11 @@
+import "../../../styles/MovieDetailPage.css";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { MoviesContext } from "../contexts/MoviesContext";
 import { MovieDetailCard } from "../../../components/MovieDetailCard";
 import { ReviewList } from "../../../components/ReviewList";
+import { NavBar } from "../../../components/NavBar";
+import { NoResultMessage } from "../../../components/NoResultMessage";
 
 export const MovieDetailPage = () => {
   const { id } = useParams();
@@ -15,16 +18,22 @@ export const MovieDetailPage = () => {
   const movie = movies.find((movie) => movie.id === movieId);
 
   return (
-    <>
-      <h1>MovieDetail</h1>
+    <div className="movie-detail-page">
+      <div className="movie-detail-page__navbar">
+        <NavBar />
+      </div>
       {movie ? (
         <>
-          <MovieDetailCard movie={movie} />
-          <ReviewList movieId={movieId} />
+          <div className="movie-detail-page__card">
+            <MovieDetailCard movie={movie} />
+          </div>
+          <div className="movie-detail-page__reviews">
+            <ReviewList movieId={movieId} />
+          </div>
         </>
       ) : (
-        "No hay"
+        <NoResultMessage message="There isn't any details on this movie" />
       )}
-    </>
+    </div>
   );
 };

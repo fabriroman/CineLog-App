@@ -1,6 +1,7 @@
 import type { GenreDropdownType } from "../types/genre";
 import { GenreDropdown } from "./GenreDropdown";
 import { SearchBar } from "./SearchBar";
+import "../styles/Filter.css";
 
 interface FilterProps {
   selectedGenre: GenreDropdownType;

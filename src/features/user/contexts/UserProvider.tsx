@@ -47,10 +47,13 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     addToWatchlist,
     removeFromWatchlist,
     isInWatchlist,
-    moviesInWatchlist: watchlist
-      .flatMap((item) => item.movieIds)
-      .map((movieId) => findMovieById(movieId))
-      .filter((movie) => movie !== undefined) as Movie[],
+    moviesInWatchlist: currentUser
+      ? watchlist
+          .filter((item) => item.userId === currentUser.id)
+          .flatMap((item) => item.movieIds)
+          .map((movieId) => findMovieById(movieId))
+          .filter((movie) => movie !== undefined)
+      : ([] as Movie[]),
     moviesWithReviews,
   };
 
