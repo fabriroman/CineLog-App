@@ -1,4 +1,6 @@
+import { NoResultMessage } from "./NoResultMessage";
 import { StarRating } from "./StarRating";
+import "../styles/Table.css";
 
 export interface Review {
   id: number;
@@ -24,33 +26,36 @@ export const ReviewsTable = ({ reviews, movies }: ReviewsTableProps) => {
   };
 
   return (
-    <table className="reviews-table">
-      <thead className="reviews-table__header">
-        <tr className="reviews-table__header-row">
-          <th className="reviews-table__header-cell">Película</th>
-          <th className="reviews-table__header-cell">Usuario</th>
-          <th className="reviews-table__header-cell">Calificación</th>
+    <table className="table">
+      <thead className="table__header">
+        <tr className="table__header-row">
+          <th className="table__header-cell">Movie</th>
+          <th className="table__header-cell">User</th>
+          <th className="table__header-cell">Rating</th>
         </tr>
       </thead>
-      <tbody className="reviews-table__body">
-        {reviews.map((review) => {
-          const title = getMovieTitle(review.movieId);
-          if (!title) return null;
-
-          return (
-            <tr key={review.id} className="reviews-table__row">
-              <td className="reviews-table__cell reviews-table__cell--movie">
-                {title}
+      <tbody className="table__body">
+        {reviews.length === 0 ? (
+          <tr className="table__message">
+            <td colSpan={3}>
+              <NoResultMessage message="No reviews match your criteria" />
+            </td>
+          </tr>
+        ) : (
+          reviews.map((review) => (
+            <tr key={review.id} className="table__row">
+              <td className="table__cell table__cell--movie">
+                {getMovieTitle(review.movieId)}
               </td>
-              <td className="reviews-table__cell reviews-table__cell--user">
-                <span className="reviews-table__user-id">{review.userId}</span>
+              <td className="table__cell table__cell--user">
+                <span className="table__user-id">{review.userId}</span>
               </td>
-              <td className="reviews-table__cell reviews-table__cell--rating">
+              <td className="table__cell table__cell--rating">
                 <StarRating value={review.rating} readOnly />
               </td>
             </tr>
-          );
-        })}
+          ))
+        )}
       </tbody>
     </table>
   );

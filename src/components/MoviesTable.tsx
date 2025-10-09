@@ -1,4 +1,5 @@
 import { StarRating } from "./StarRating";
+import "../styles/Table.css";
 import type { Movie } from "../types/movie";
 
 interface MoviesTableProps {
@@ -9,31 +10,25 @@ interface MoviesTableProps {
 
 export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
   return (
-    <table className="movies-table">
-      <thead className="movies-table__header">
-        <tr className="movies-table__header-row">
-          <th className="movies-table__header-cell">Título</th>
-          <th className="movies-table__header-cell">Año</th>
-          <th className="movies-table__header-cell">Género</th>
-          <th className="movies-table__header-cell">Rating</th>
-          <th className="movies-table__header-cell movies-table__header-cell--actions">
-            Acciones
+    <table className="table">
+      <thead className="table__header">
+        <tr className="table__header-row">
+          <th className="table__header-cell">Title</th>
+          <th className="table__header-cell">Year</th>
+          <th className="table__header-cell">Genre</th>
+          <th className="table__header-cell">Rating</th>
+          <th className="table__header-cell table__header-cell--actions">
+            Actions
           </th>
         </tr>
       </thead>
-      <tbody className="movies-table__body">
+      <tbody className="table__body">
         {movies.map((movie) => (
-          <tr key={movie.id} className="movies-table__row">
-            <td className="movies-table__cell movies-table__cell--title">
-              {movie.title}
-            </td>
-            <td className="movies-table__cell movies-table__cell--year">
-              {movie.year}
-            </td>
-            <td className="movies-table__cell movies-table__cell--genre">
-              {movie.genres.join(", ")}
-            </td>
-            <td className="movies-table__cell movies-table__cell--rating">
+          <tr key={movie.id} className="table__row">
+            <td className="table__cell table__cell--title">{movie.title}</td>
+            <td className="table__cell">{movie.year}</td>
+            <td className="table__cell">{movie.genres.join(", ")}</td>
+            <td className="table__cell">
               <StarRating value={movie.rating} readOnly />
             </td>
             <td className="movies-table__cell movies-table__cell--actions">
