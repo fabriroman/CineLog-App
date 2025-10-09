@@ -6,6 +6,7 @@ export type CreateMovieData = Omit<Movie, "id">;
 export type MoviesContextType = {
   movies: Movie[];
   setMovies: (movies: Movie[]) => void;
+  getMovieTitle: (movieId: number) => string;
   createMovie: (movieData: CreateMovieData) => void;
 };
 

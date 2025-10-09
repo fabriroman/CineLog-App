@@ -15,8 +15,14 @@ export const MoviesProvider = ({ children }: { children: React.ReactNode }) => {
     setMovies([...movies, newMovie]);
   };
 
+  const getMovieTitle = (movieId: number): string => {
+    const movie = movies.find((movie) => movie.id === movieId);
+    return movie ? movie.title : "";
+  };
   return (
-    <MoviesContext.Provider value={{ movies, setMovies, createMovie }}>
+    <MoviesContext.Provider
+      value={{ movies, setMovies, getMovieTitle, createMovie }}
+    >
       {children}
     </MoviesContext.Provider>
   );

@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { AdminReviewsSection } from "../../../components/AdminReviewsSection";
 import { AdminMoviesSection } from "../../../components/AdminMoviesSection";
+import { useNavigate } from "react-router-dom";
 
-export const Admin = () => {
+export const AdminPage = () => {
   const [isReviewsShown, setIsReviewsShown] = useState(false);
 
   const handleReviews = (isMovies: boolean) => {
     setIsReviewsShown(!isMovies);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="admin">
@@ -18,13 +21,19 @@ export const Admin = () => {
           className="admin__button admin__button--movies"
           onClick={() => handleReviews(true)}
         >
-          MOVIES
+          Movies
         </button>
         <button
           className="admin__button admin__button--reviews"
           onClick={() => handleReviews(false)}
         >
-          REVIEWS
+          Reviews
+        </button>
+        <button
+          className="admin__button admin__button--home"
+          onClick={() => navigate("/")}
+        >
+          Home
         </button>
       </div>
 
