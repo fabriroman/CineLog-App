@@ -15,8 +15,18 @@ export const MoviesProvider = ({ children }: { children: React.ReactNode }) => {
     setMovies([...movies, newMovie]);
   };
 
+  const updateMovie = (id: number, updateData: Partial<Movie>) => {
+    setMovies(movies.map((m) => (m.id === id ? {...m, ...updateData}: m)));
+  }
+
+
+  const deleteMovie = (id: number) => {
+    if(window.confirm("Seguro que deeas eliminar esta pelicula")) {
+      setMovies(movies.filter((m) => m.id !==id));
+    }
+  }
   return (
-    <MoviesContext.Provider value={{ movies, setMovies, createMovie }}>
+    <MoviesContext.Provider value={{ movies, setMovies, createMovie, updateMovie, deleteMovie }}>
       {children}
     </MoviesContext.Provider>
   );
