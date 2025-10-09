@@ -28,7 +28,6 @@ export const HomePage = () => {
   return (
     <section className="home">
       <Header />
-      <h1 className="page-title">Movies</h1>
       <Filter
         selectedGenre={selectedGenre}
         onGenreChange={setSelectedGenre}

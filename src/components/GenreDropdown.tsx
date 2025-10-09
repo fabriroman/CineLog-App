@@ -13,7 +13,7 @@ export const GenreDropdown = ({
   return (
     <div className="genre-dropdown">
       <label htmlFor="genre-select" className="genre-dropdown__label">
-        Genre
+        Genre:
       </label>
       <select
         id="genre-select"

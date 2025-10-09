@@ -1,3 +1,5 @@
+import "../styles/Searchbar.css"
+
 interface SearchBarProps {
   searchQuery: string;
   onChange: (query: string) => void;
@@ -11,7 +13,7 @@ export const SearchBar = ({ searchQuery, onChange }: SearchBarProps) => {
         id="movie-search"
         value={searchQuery}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="search"
+        placeholder="Search"
         className="search-bar__input"
       />
     </div>

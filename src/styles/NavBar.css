@@ -4,8 +4,48 @@
 }
 
 .nav__list {
+  
   display: flex;
+  align-items: center;
+  gap: 1.25rem;
   margin: 0;
   padding: 0;
-  list-style: none;
+}
+
+.nav__button {
+  background: none;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4a5568;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+.nav__button:hover:not(:disabled) {
+  color: #2d3748;
+  background-color: #f7fafc;
+}
+
+.nav__button--active {
+  color: #2b6cb0;
+  font-weight: 600;
+  background-color: #ebf4ff;
+}
+
+.nav__button--logout {
+  color: #e53e3e;
+}
+
+.nav__button--logout:hover:not(:disabled) {
+  color: #c53030;
+  background-color: #fff5f5;
+}
+
+.nav__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

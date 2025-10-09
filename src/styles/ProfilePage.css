@@ -1,13 +1,16 @@
 .profile {
   max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
   min-height: 100vh;
+
 }
 
 .profile__navbar {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  height: 4rem; 
 }
 
 .profile__title {

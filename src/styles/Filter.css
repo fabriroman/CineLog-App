@@ -1,12 +1,14 @@
 .filter {
-  border-radius: 8px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 2rem;
+  width: 100%;
+  padding: 0 1.5rem;
+  margin: 1.5rem auto 2rem;
+  max-width: 1400px;
 }
 
 .filter__controls {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  gap: 1rem;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
