@@ -31,10 +31,10 @@ export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
             <td className="table__cell">
               <StarRating value={movie.rating} readOnly />
             </td>
-            <td className="movies-table__cell movies-table__cell--actions">
+            <td className="table__cell table__cell--actions">
               {onEdit && (
                 <button
-                  className="movies-table__action-button movies-table__action-button--edit"
+                  className="table__action-button table__action-button--edit"
                   onClick={() => onEdit(movie)}
                 >
                   Editar
@@ -42,7 +42,7 @@ export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
               )}
               {onDelete && (
                 <button
-                  className="movies-table__action-button movies-table__action-button--delete"
+                  className="table__action-button table__action-button--delete"
                   onClick={() => onDelete(movie)}
                 >
                   Eliminar
