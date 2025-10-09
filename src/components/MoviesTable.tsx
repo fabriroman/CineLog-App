@@ -1,18 +1,11 @@
 import { StarRating } from "./StarRating";
 import "../styles/Table.css";
-
-export interface Movie {
-  id: number;
-  title: string;
-  year: number;
-  genres: string[];
-  rating: number;
-}
+import type { Movie } from "../types/movie";
 
 interface MoviesTableProps {
   movies: Movie[];
-  onEdit?: (movie: Movie) => void;
-  onDelete?: (movie: Movie) => void;
+  onEdit: (movie: Movie) => void;
+  onDelete: (movie: Movie) => void;
 }
 
 export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
@@ -24,11 +17,9 @@ export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
           <th className="table__header-cell">Year</th>
           <th className="table__header-cell">Genre</th>
           <th className="table__header-cell">Rating</th>
-          {(onEdit || onDelete) && (
-            <th className="table__header-cell table__header-cell--actions">
-              Actions
-            </th>
-          )}
+          <th className="table__header-cell table__header-cell--actions">
+            Actions
+          </th>
         </tr>
       </thead>
       <tbody className="table__body">
@@ -40,26 +31,24 @@ export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
             <td className="table__cell">
               <StarRating value={movie.rating} readOnly />
             </td>
-            {(onEdit || onDelete) && (
-              <td className="movies-table__cell movies-table__cell--actions">
-                {onEdit && (
-                  <button
-                    className="movies-table__action-button movies-table__action-button--edit"
-                    onClick={() => onEdit(movie)}
-                  >
-                    Editar
-                  </button>
-                )}
-                {onDelete && (
-                  <button
-                    className="movies-table__action-button movies-table__action-button--delete"
-                    onClick={() => onDelete(movie)}
-                  >
-                    Eliminar
-                  </button>
-                )}
-              </td>
-            )}
+            <td className="movies-table__cell movies-table__cell--actions">
+              {onEdit && (
+                <button
+                  className="movies-table__action-button movies-table__action-button--edit"
+                  onClick={() => onEdit(movie)}
+                >
+                  Editar
+                </button>
+              )}
+              {onDelete && (
+                <button
+                  className="movies-table__action-button movies-table__action-button--delete"
+                  onClick={() => onDelete(movie)}
+                >
+                  Eliminar
+                </button>
+              )}
+            </td>
           </tr>
         ))}
       </tbody>

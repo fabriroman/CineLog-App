@@ -1,18 +1,36 @@
 import { useContext, useState } from "react";
 import { MoviesContext } from "../features/movies/contexts/MoviesContext";
 import { MoviesTable } from "./MoviesTable";
-import { CreateMovieModal } from "./CreateMovieModal";
+import { MovieFormModal } from "./MovieFormModal";
 import "../styles/AdminMoviesSection.css";
+import type { Movie } from "../types/movie";
 
 export const AdminMoviesSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [movieToEdit, setMovieToEdit] = useState<Movie | null>(null);
   const moviesCtx = useContext(MoviesContext);
 
   if (!moviesCtx) {
     throw new Error("MoviesContext must be used within MoviesProvider");
   }
 
-  const { movies } = moviesCtx;
+  const { movies, deleteMovie } = moviesCtx;
+
+  const handleEdit = (movie: Movie) => {
+    setMovieToEdit(movie);
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = (movie: Movie) => {
+    if (window.confirm(`Are you sure you want to delete "${movie.title}"?`)) {
+      deleteMovie(movie);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setMovieToEdit(null);
+  };
 
   return (
     <section className="admin__section">
@@ -23,11 +41,16 @@ export const AdminMoviesSection = () => {
         </div>
       </div>
       <div className="admin__content">
-        <MoviesTable movies={movies} />
+        <MoviesTable
+          movies={movies}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
       </div>
-      <CreateMovieModal
+      <MovieFormModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleCloseModal}
+        movieToEdit={movieToEdit}
       />
     </section>
   );

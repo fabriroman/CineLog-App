@@ -8,6 +8,8 @@ export type MoviesContextType = {
   setMovies: (movies: Movie[]) => void;
   getMovieTitle: (movieId: number) => string;
   createMovie: (movieData: CreateMovieData) => void;
+  updateMovie: (movieData: Movie) => void;
+  deleteMovie: (movieData: Movie) => void;
 };
 
 export const MoviesContext = createContext<MoviesContextType | null>(null);

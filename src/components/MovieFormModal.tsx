@@ -1,45 +1,75 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { MoviesContext } from "../features/movies/contexts/MoviesContext";
 import { GENRES } from "../types/genre";
 import type { CreateMovieData } from "../features/movies/contexts/MoviesContext";
+import type { Movie } from "../types/movie";
 import "../styles/CreateMovieModal.css";
 
-interface CreateMovieModalProps {
+interface MovieFormModalProps {
   isOpen: boolean;
   onClose: () => void;
+  movieToEdit?: Movie | null;
 }
 
-export const CreateMovieModal = ({
+type MovieFormData = Omit<CreateMovieData, "actors"> & {
+  actors: string;
+};
+
+export const MovieFormModal = ({
   isOpen,
   onClose,
-}: CreateMovieModalProps) => {
+  movieToEdit,
+}: MovieFormModalProps) => {
   const moviesCtx = useContext(MoviesContext);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<CreateMovieData>({
+  } = useForm<MovieFormData>({
     defaultValues: {
       title: "",
       year: new Date().getFullYear(),
       genres: [],
-      actors: [],
+      actors: "",
       description: "",
       posterUrl: "",
       rating: 0,
     },
   });
 
+  useEffect(() => {
+    if (movieToEdit) {
+      reset({
+        title: movieToEdit.title,
+        year: movieToEdit.year,
+        genres: movieToEdit.genres,
+        actors: movieToEdit.actors.join(", "),
+        description: movieToEdit.description,
+        posterUrl: movieToEdit.posterUrl,
+        rating: movieToEdit.rating,
+      });
+    } else {
+      reset({
+        title: "",
+        year: new Date().getFullYear(),
+        genres: [],
+        actors: "",
+        description: "",
+        posterUrl: "",
+        rating: 0,
+      });
+    }
+  }, [movieToEdit, reset]);
+
   if (!moviesCtx) {
     throw new Error("MoviesContext must be used within MoviesProvider");
   }
-  const [actorsInput, setActorsInput] = useState("");
 
-  const onSubmit = (data: CreateMovieData) => {
+  const onSubmit = (data: MovieFormData) => {
     try {
-      const actors = actorsInput
+      const actors = data.actors
         .split(",")
         .map((a: string) => a.trim())
         .filter(Boolean);
@@ -49,16 +79,24 @@ export const CreateMovieModal = ({
         return;
       }
 
-      const movieData: CreateMovieData = {
-      ...data,
-      actors, 
-    };
+      const movieData = {
+        ...data,
+        actors,
+      };
 
-      moviesCtx.createMovie(movieData);
+      if (movieToEdit) {
+        moviesCtx.updateMovie({
+          ...movieData,
+          id: movieToEdit.id,
+        });
+      } else {
+        moviesCtx.createMovie(movieData);
+      }
+
       onClose();
       reset();
     } catch (error) {
-      console.error("Error creating movie:", error);
+      console.error("Error saving movie:", error);
     }
   };
 
@@ -68,7 +106,9 @@ export const CreateMovieModal = ({
     <div className="create-movie-modal-overlay">
       <div className="create-movie-modal">
         <div className="create-movie-modal__header">
-          <h2 className="create-movie-modal__title">Create New Movie</h2>
+          <h2 className="create-movie-modal__title">
+            {movieToEdit ? "Edit Movie" : "Create New Movie"}
+          </h2>
           <button className="create-movie-modal__close" onClick={onClose}>
             ×
           </button>
@@ -151,15 +191,28 @@ export const CreateMovieModal = ({
             )}
           </div>
           <div className="create-movie-modal__field">
-            <label>Actors (separate with commas)</label>
+            <label htmlFor="actors" className="create-movie-modal__label">
+              Actors (separate with commas)
+            </label>
             <input
-              value={actorsInput}
-              onChange={(e) => setActorsInput(e.target.value)}
+              type="text"
+              id="actors"
+              className="create-movie-modal__input"
               placeholder="e.g. Tom Hanks, Natalie Portman"
+              {...register("actors", {
+                required: "At least one actor is required",
+                validate: (value) => {
+                  const actors = value
+                    .split(",")
+                    .map((a: string) => a.trim())
+                    .filter(Boolean);
+                  return actors.length > 0 || "At least one actor is required";
+                },
+              })}
             />
-            {actorsInput.trim() === "" && (
+            {errors.actors && (
               <span className="create-movie-form-error">
-                At least one actor is required
+                {errors.actors.message}
               </span>
             )}
           </div>
@@ -224,7 +277,7 @@ export const CreateMovieModal = ({
               type="submit"
               className="create-movie-button create-movie-button--primary"
             >
-              Create Movie
+              {movieToEdit ? "Update Movie" : "Create Movie"}
             </button>
           </div>
         </form>
