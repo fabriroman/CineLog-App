@@ -1,26 +1,34 @@
 import { useContext, useState } from "react";
 import { MoviesContext } from "../features/movies/contexts/MoviesContext";
 import { MoviesTable } from "./MoviesTable";
-import { CreateMovieModal } from "./CreateMovieModal";
-import { EditMovieModal } from "./EditMovieModal";
-import type { Movie} from "../types/movie";
+import { MovieFormModal } from "./MovieFormModal";
+import type { Movie } from "../types/movie";
 
 export const AdminMoviesSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [movieToEdit, setMovieToEdit] = useState<Movie | null>(null);
   const moviesCtx = useContext(MoviesContext);
-  const [editingMovie, setEditingMovie] = useState<Movie  | null>(null);
- 
+
   if (!moviesCtx) {
     throw new Error("MoviesContext must be used within MoviesProvider");
   }
-  const { movies,deleteMovie } = moviesCtx;
 
-  const handleEdit = (movie: Movie)=> {
-    setEditingMovie(movie)
-  }
+  const { movies, deleteMovie } = moviesCtx;
+
+  const handleEdit = (movie: Movie) => {
+    setMovieToEdit(movie);
+    setIsModalOpen(true);
+  };
 
   const handleDelete = (movie: Movie) => {
-    deleteMovie(movie.id);
+    if (window.confirm(`Are you sure you want to delete "${movie.title}"?`)) {
+      deleteMovie(movie);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setMovieToEdit(null);
   };
 
   return (
@@ -30,16 +38,17 @@ export const AdminMoviesSection = () => {
         <button onClick={() => setIsModalOpen(true)}>Add New Movie</button>
       </div>
       <div className="admin__content">
-        <MoviesTable movies={movies} onEdit={handleEdit} onDelete={handleDelete} />
+        <MoviesTable
+          movies={movies}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
       </div>
-      <CreateMovieModal
+      <MovieFormModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleCloseModal}
+        movieToEdit={movieToEdit}
       />
-      {editingMovie && (
-        <EditMovieModal movie={editingMovie}
-        onClose={() => setEditingMovie(null)}/>
-      )}
     </section>
   );
 };

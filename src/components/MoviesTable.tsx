@@ -3,8 +3,8 @@ import type { Movie } from "../types/movie";
 
 interface MoviesTableProps {
   movies: Movie[];
-  onEdit?: (movie: Movie) => void;
-  onDelete?: (movie: Movie) => void;
+  onEdit: (movie: Movie) => void;
+  onDelete: (movie: Movie) => void;
 }
 
 export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
@@ -16,11 +16,9 @@ export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
           <th className="movies-table__header-cell">Año</th>
           <th className="movies-table__header-cell">Género</th>
           <th className="movies-table__header-cell">Rating</th>
-          {(onEdit || onDelete) && (
-            <th className="movies-table__header-cell movies-table__header-cell--actions">
-              Acciones
-            </th>
-          )}
+          <th className="movies-table__header-cell movies-table__header-cell--actions">
+            Acciones
+          </th>
         </tr>
       </thead>
       <tbody className="movies-table__body">
@@ -38,12 +36,24 @@ export const MoviesTable = ({ movies, onEdit, onDelete }: MoviesTableProps) => {
             <td className="movies-table__cell movies-table__cell--rating">
               <StarRating value={movie.rating} readOnly />
             </td>
-            {(onEdit || onDelete) && (
-               <td>
-                {onEdit && <button onClick={() => onEdit(movie)}>Editar</button>}
-                {onDelete && <button onClick={() => onDelete(movie)}>Eliminar</button>}
-               </td>
-            )}
+            <td className="movies-table__cell movies-table__cell--actions">
+              {onEdit && (
+                <button
+                  className="movies-table__action-button movies-table__action-button--edit"
+                  onClick={() => onEdit(movie)}
+                >
+                  Editar
+                </button>
+              )}
+              {onDelete && (
+                <button
+                  className="movies-table__action-button movies-table__action-button--delete"
+                  onClick={() => onDelete(movie)}
+                >
+                  Eliminar
+                </button>
+              )}
+            </td>
           </tr>
         ))}
       </tbody>
