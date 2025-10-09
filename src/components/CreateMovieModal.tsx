@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { MoviesContext } from "../features/movies/contexts/MoviesContext";
 import { GENRES } from "../types/genre";
@@ -10,6 +10,10 @@ interface CreateMovieModalProps {
   onClose: () => void;
 }
 
+type CreateMovieFormData = Omit<CreateMovieData, "actors"> & {
+  actors: string;
+};
+
 export const CreateMovieModal = ({
   isOpen,
   onClose,
@@ -20,12 +24,12 @@ export const CreateMovieModal = ({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<CreateMovieData>({
+  } = useForm<CreateMovieFormData>({
     defaultValues: {
       title: "",
       year: new Date().getFullYear(),
       genres: [],
-      actors: [],
+      actors: "",
       description: "",
       posterUrl: "",
       rating: 0,
@@ -35,11 +39,10 @@ export const CreateMovieModal = ({
   if (!moviesCtx) {
     throw new Error("MoviesContext must be used within MoviesProvider");
   }
-  const [actorsInput, setActorsInput] = useState("");
 
-  const onSubmit = (data: CreateMovieData) => {
+  const onSubmit = (data: CreateMovieFormData) => {
     try {
-      const actors = actorsInput
+      const actors = data.actors
         .split(",")
         .map((a: string) => a.trim())
         .filter(Boolean);
@@ -50,9 +53,9 @@ export const CreateMovieModal = ({
       }
 
       const movieData: CreateMovieData = {
-      ...data,
-      actors, 
-    };
+        ...data,
+        actors,
+      };
 
       moviesCtx.createMovie(movieData);
       onClose();
@@ -151,15 +154,28 @@ export const CreateMovieModal = ({
             )}
           </div>
           <div className="create-movie-modal__field">
-            <label>Actors (separate with commas)</label>
+            <label htmlFor="actors" className="create-movie-modal__label">
+              Actors (separate with commas)
+            </label>
             <input
-              value={actorsInput}
-              onChange={(e) => setActorsInput(e.target.value)}
+              type="text"
+              id="actors"
+              className="create-movie-modal__input"
               placeholder="e.g. Tom Hanks, Natalie Portman"
+              {...register("actors", {
+                required: "At least one actor is required",
+                validate: (value) => {
+                  const actors = value
+                    .split(",")
+                    .map((a: string) => a.trim())
+                    .filter(Boolean);
+                  return actors.length > 0 || "At least one actor is required";
+                },
+              })}
             />
-            {actorsInput.trim() === "" && (
+            {errors.actors && (
               <span className="create-movie-form-error">
-                At least one actor is required
+                {errors.actors.message}
               </span>
             )}
           </div>
