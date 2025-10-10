@@ -1,10 +1,14 @@
+/* ===============================================
+   🔹 NAVBAR BASE
+   =============================================== */
 .nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  position: relative;
 }
 
 .nav__list {
-  
   display: flex;
   align-items: center;
   gap: 1.25rem;
@@ -48,4 +52,78 @@
 .nav__button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* ===============================================
+   🔹 TOGGLE
+   =============================================== */
+.nav__checkbox {
+  display: none;
+}
+
+.nav__toggle {
+  display: none; /* oculto en desktop */
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #2563eb;
+  user-select: none;
+  background: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.nav__toggle:hover {
+  background-color: #ebf4ff;
+}
+
+
+@media (max-width: 768px) {
+  .nav {
+    justify-content: flex-start;
+  }
+
+  .nav__toggle {
+    display: block;
+    position: relative;
+    margin-left: 0.5rem;
+    z-index: 30;
+  }
+
+  .nav__list {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #fff;
+    position: absolute;
+    top: 2.8rem;
+    left: -5px;
+    width: 220px;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 25;
+  }
+
+  /* Mostrar menú al activar el checkbox */
+  .nav__checkbox:checked ~ .nav__list {
+    display: flex;
+  }
+
+  /* Ajuste para ProfilePage */
+  .profile__navbar .nav {
+    justify-content: flex-start !important;
+  }
+
+  .profile__navbar .nav__list {
+    left: 0 !important;
+    right: auto !important;
+  }
+
+  .nav__button {
+    width: 100%;
+    text-align: left;
+    font-size: 0.9rem;
+  }
 }

@@ -52,14 +52,17 @@ export const NavBar = () => {
     : baseNavItems;
 
   return (
+
     <nav className="nav">
+
+      <input type="checkbox" id="nav-toggle" className="nav__checkbox" />
+      <label htmlFor="nav-toggle" className="nav__toggle">☰</label>
       <div className="nav__list">
         {navItems.map((item) => (
           <button
             key={item.id}
-            className={`nav__button ${
-              location.pathname === item.path ? "nav__button--active" : ""
-            }`}
+            className={`nav__button ${location.pathname === item.path ? "nav__button--active" : ""
+              }`}
             onClick={() => handleNavigation(item.path)}
           >
             {item.label}
