@@ -1,0 +1,101 @@
+.movie-detail {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.movie-detail__poster {
+  flex: 0 0 160px;
+}
+
+.movie-detail__img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.movie-detail__info {
+  flex: 1;
+}
+
+.movie-detail__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.movie-detail__title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.movie-detail__year {
+  color: #718096;
+  margin: 0.25rem 0;
+}
+
+.movie-detail__genres {
+  margin: 0.5rem 0;
+}
+
+.movie-detail__genre {
+  background: #f1f4f5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #4a5568;
+  margin-right: 0.5rem;
+}
+
+.movie-detail__actors {
+  margin: 0.5rem 0;
+}
+.movie-detail__actor {
+  background: #f5f7f8;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  color: #4a5568;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.movie-detail__description {
+  color: #4a5568;
+  line-height: 1.5;
+  margin: 0.75rem 0;
+  font-size: 0.95rem;
+}
+
+.movie-detail__buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.movie-detail__button {
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: white;
+  color: #4d4a3d;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.movie-detail__button:hover {
+  background: #f8fafc;
+  color: #27282a;;
+}

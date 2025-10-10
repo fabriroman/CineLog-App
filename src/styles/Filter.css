@@ -1,0 +1,14 @@
+.filter {
+  width: 100%;
+  padding: 0 1.5rem;
+  margin: 1.5rem auto 2rem;
+  max-width: 1400px;
+}
+
+.filter__controls {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}

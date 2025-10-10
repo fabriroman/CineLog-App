@@ -1,0 +1,45 @@
+.admin__section {
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.admin__section-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding: 0 1.5rem;
+  flex-wrap: wrap;
+}
+
+.admin__section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+}
+
+.admin__section-add button {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #2b6cb0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin__section-add button:hover {
+  background-color: #2c5282;
+}
+
+.admin__section-add button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(43, 108, 176, 0.25);
+}
+
+.admin__content {
+  padding: 0 1.5rem;
+}

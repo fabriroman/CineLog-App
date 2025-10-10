@@ -1,0 +1,115 @@
+.table {
+  width: 80vw;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table__header {
+  background-color: #2e68b4;
+  color: white;
+}
+
+.table__header-row {
+  text-align: left;
+}
+
+.table__header-cell {
+  padding: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+}
+
+.table__body {
+  background-color: white;
+}
+
+.table__row {
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s ease;
+}
+
+.table__row:hover {
+  background-color: #f8f9fa;
+}
+
+.table__row:last-child {
+  border-bottom: none;
+}
+
+.table__cell {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+/* === Variants === */
+.table__cell--user,
+.table__cell--year,
+.table__cell--genre {
+  color: #6c757d;
+}
+
+.table__cell--title {
+  font-weight: 500;
+}
+
+.table__cell--rating {
+  text-align: center;
+}
+
+.table__cell--actions {
+  text-align: right;
+}
+
+.table__user-id {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.table__message {
+  text-align: center;
+}
+
+.table__action-button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.table__action-button--edit {
+  background-color: #2e68b4;
+  color: #e6e8eb;
+}
+
+.table__action-button--edit:hover {
+  background-color: #81a3cd;
+}
+
+.table__action-button--delete {
+  background-color: #d87b7b;
+  color: #ffffff;
+}
+
+.table__action-button--delete:hover {
+  background-color: #fecaca;
+}
+
+.table__action-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+}
+
+.table__action-button--delete:focus {
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.25);
+}

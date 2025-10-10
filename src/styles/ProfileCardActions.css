@@ -1,0 +1,31 @@
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.card-button {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  background: none;
+  padding: 10px 16px;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-button--danger {
+  background-color: rgba(229, 9, 20, 0.45);
+}
+
+.card-button__text {
+  display: inline-block;
+}

@@ -1,0 +1,149 @@
+.header {
+  width: 100%;
+  height: 4rem;
+  padding-left: 1rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center; 
+}
+
+.header__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+}
+
+.header__logo-section {
+  flex: 0 0 auto;
+  min-width: 170px;
+  display: flex;
+  align-items: center;
+}
+
+.header__user {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.header__user-message {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333333;
+  max-width: 100%;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 1rem;
+}
+
+.header__actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* espacio entre la imagen y el texto (si lo usás) */
+  cursor: pointer;
+}
+
+/* Imagen del logo */
+.logo__image {
+  width: 65px;          /* tamaño base del logo */
+  height: auto;         /* mantiene proporción */
+  object-fit: contain;  /* evita recortes */
+  display: block;
+}
+
+/* Texto del logo */
+.logo__text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b; /* gris oscuro elegante */
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
+  .header__actions {
+  grid-area: actions;
+  justify-self: start; /* 👈 antes estaba end */
+  position: relative;
+}
+
+  .header__container {
+    display: grid;
+    grid-template-areas:
+      "logo actions"
+      "user user";
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    width: 100%;
+  }
+
+  .header__logo-section {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+  }
+
+  .header__actions {
+    grid-area: actions;
+    justify-self: end;
+  }
+
+  .header__user {
+    grid-area: user;
+    justify-content: center;
+    text-align: center;
+    margin-top: 0.25rem;
+  }
+
+  .logo__image {
+    width: 48px;
+  }
+
+  .header__user-message {
+    font-size: 0.8rem;
+    color: #555;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__user-message {
+    display: none; /* oculta el texto en móviles */
+  }
+
+  .logo__image {
+    width: 42px;
+  }
+
+  .nav__list {
+    gap: 0.4rem;
+  }
+
+  .nav__button {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+}
+
