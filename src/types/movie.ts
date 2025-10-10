@@ -6,7 +6,7 @@ export type Movie = {
   year: number;
   posterUrl: string;
   description: string;
-  rating: number
+  rating: number;
   genres: Genre[];
   actors: string[];
 };
